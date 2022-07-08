@@ -1,8 +1,20 @@
 body{
     padding: 0;
     margin: 0;
+    font-size: 62.5%;
+    max-width: 100vw;
+    margin: 0.5% 4% ;
+    box-sizing: border-box;
 }
-a{
+li{
     list-style: none;
-    
+}
+button{
+    background-color: transparent;
+    color: #666669;
+    border: 2px solid #66666962;
+    box-shadow: 1px 1px 1px rgba(35, 143, 84, 0.212);
+} 
+a{
+    text-decoration: none;
 }

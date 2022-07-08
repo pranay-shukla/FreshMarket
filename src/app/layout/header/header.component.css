@@ -1,0 +1,105 @@
+.header{
+width: 97%;
+}
+
+.nav1{
+    display: flex;
+    justify-content: space-between;
+    /* background-image: url("../../../assets/fresh_market_bg.jfif");
+    background-position: bottom;
+    background-position-y: 100%;
+    background-position-x: right; */
+    height: 12vh;
+    
+    
+    background-repeat: no-repeat;
+    /* background: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)); */
+    
+}
+
+.nav1 .logo{
+    width: 20%;
+    margin: 0 0 0 0;
+   
+}
+
+.nav1 .search{
+    margin: 2% 0;
+    font-size: 2em;
+    
+}
+
+.nav1 .curr-lang-cart{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+
+}
+.nav1 .curr-lang-cart .curr-lang{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.nav2{
+    height: 5vh;
+    background-color: #8bc731;
+    border: 5px solid #7fb328;
+}
+.nav2 ul{
+    width: 60vw;
+    display: flex;
+    flex-direction: row;
+    
+    margin: 0em;
+    justify-content: space-between;
+    margin-left: 0;
+}
+.nav2 ul li a{
+    padding: 0.3em;
+    padding: 1;
+    font-size: 1.8em;
+    color: #d3fe9b;
+}
+.nav3{
+    display: flex;
+    font-size: 1.5em;
+    text-align: center;
+    color: #666669;
+    justify-content: space-between;
+    border: 2PX SOLID lightgray;
+    box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.226);
+}
+.nav3 .left-nav ul,
+.nav3 .right-nav ul{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.nav3  .left-nav ul li a{
+    padding: 0.5em;
+    text-align: center;
+    color: #666669;
+} 
+.nav3  .right-nav ul li a{
+    padding: 0.5em;
+    color: #666669;
+    text-align: center;
+    margin-left: 0.5em;
+    position: relative;
+    
+    
+}
+.nav3  .left-nav ul li a img, 
+.nav3  .right-nav ul li a img{
+    position: absolute;
+    transform: translate(-110%,0%);
+    
+}
+
+
