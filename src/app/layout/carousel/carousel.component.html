@@ -1,1 +1,23 @@
-<p>carousel works!</p>
+<div class="carousel">
+    <div class="featured-products">
+        Featured Products
+    </div>
+    <div class="featured-products-carousel">
+        <div *ngFor="let product of products" class="product" >
+            <!-- <div class="image">
+                <img src="../../../assets/images/{{product.filename}}" alt="product image" >
+            </div> -->
+            <div class="details">
+                <div class="name">{{product.title}}</div>
+                <div class="price">{{product.price}}</div>
+                <div class="rating">{{product.rating}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="new-products">
+        New Products
+    </div>
+    <div class="new-products-carousel">
+
+    </div>
+</div>
