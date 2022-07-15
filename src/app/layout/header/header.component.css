@@ -102,4 +102,12 @@ width: 97%;
     
 }
 
-
+.active{
+    background-color: #6666692f;
+    /* box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.322); */
+    
+}
+.active2{
+    background: #8bc73132;
+    background-size: 50%;
+}

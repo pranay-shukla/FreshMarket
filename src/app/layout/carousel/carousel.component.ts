@@ -1,20 +1,7 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ProductsDataService } from 'src/app/services/products-data.service';
 
-
-import productData from '../../../assets/products.json' ;
-
-
-interface product{
-  "title": String,
-  "type": String,
-  "description": String,
-  "filename": String,
-  "height": Number,
-  "width": Number,
-  "price": any,
-  "rating": Number
-}
 
 @Component({
   selector: 'app-carousel',
@@ -24,14 +11,20 @@ interface product{
 export class CarouselComponent implements OnInit {
   
 
-  constructor() { }
-  products: product[] = productData;
+  constructor(private _productDataService: ProductsDataService) { }
+  
+  products = this._productDataService.products;
+
   ngOnInit(): void {
   }
   
 }
 
 
+
+function ngOnInit() {
+  throw new Error('Function not implemented.');
+}
 // export class CarouselComponent implements OnInit {
   
 
