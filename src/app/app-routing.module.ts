@@ -1,25 +1,28 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BakeryComponent } from './bakery/bakery/bakery.component';
-import { BookmarkComponent } from './bookmark/bookmark/bookmark.component';
-import { CartComponent } from './cart/cart/cart.component';
-import { DairyProductsComponent } from './dairy_products/dairy-products/dairy-products.component';
-import { FruitsComponent } from './fruits/fruits/fruits.component';
-import { HomeComponent } from './home/home/home.component';
-import { MeatComponent } from './meat/meat/meat.component';
-import { ProductComponent } from './product/product/product.component';
-import { SitemapComponent } from './sitemap/sitemap/sitemap.component';
+import { BakeryComponent } from './bakery/bakery.component';
+import { BookmarkComponent } from './bookmark/bookmark.component';
+import { CartComponent } from './cart/cart.component';
+import { DairyProductsComponent } from './dairy-products/dairy-products.component';
+import { FruitsComponent } from './fruits/fruits.component';
+import { HomeComponent } from './home/home.component';
+import { MeatComponent } from './meat/meat.component';
+import { ProductComponent } from './product/product.component';
+import { SitemapComponent } from './sitemap/sitemap.component';
 import { AccountComponent } from './user/account/account.component';
 import { ContactComponent } from './user/contact/contact.component';
 import { LoginComponent } from './user/login/login.component';
-import { VeganComponent } from './vegan/vegan/vegan.component';
-import { VeggiesComponent } from './veggies/veggies/veggies.component';
+import { VeganComponent } from './vegan/vegan.component';
+import { VeggiesComponent } from './veggies/veggies.component';
 
 const routes: Routes = [
   {
-    path:'',
-    component: HomeComponent
+    path:'',redirectTo:'home',pathMatch:'full'
   },
+  { path:'home', children : [
+    {path:'',component: HomeComponent},
+    {path:'product',component: ProductComponent}
+  ]},
   {
     path: 'login',
     component: LoginComponent
@@ -33,44 +36,55 @@ const routes: Routes = [
     component: AccountComponent
   },
   {
-    path: 'bakery',
-    component: BakeryComponent
+    path:'bakery', children:[
+      {path:"",component:BakeryComponent},
+      {path:"product",component:ProductComponent}
+      
+    ]    
   },
   {
-    path: 'bookmark',
-    component: BookmarkComponent
+    path: 'bookmark', children:[
+      {path:"",component:BookmarkComponent},
+      {path:"product",component:ProductComponent}
+    ]
   },
   {
     path: 'cart',
     component: CartComponent
   },
   {
-    path: 'dairy-products',
-    component: DairyProductsComponent
+    path: 'dairy-products', children:[
+      {path:"",component:DairyProductsComponent},
+      {path:"product",component:ProductComponent}
+    ]
   },
   {
-    path: 'fruits',
-    component: FruitsComponent
+    path: 'fruits', children:[
+      {path:"",component:FruitsComponent},
+      {path:"product",component:ProductComponent}
+    ]
   },
   {
-    path: 'meat',
-    component: MeatComponent
-  },
-  {
-    path: 'product',
-    component: ProductComponent
+    path: 'meat', children:[
+      {path:"",component:MeatComponent},
+      {path:"product",component:ProductComponent}
+    ]
   },
   {
     path: 'sitemap',
     component: SitemapComponent
   },
   {
-    path: 'vegan',
-    component: VeganComponent
+    path: 'vegan', children:[
+      {path:"",component:VeganComponent},
+      {path:"product",component:ProductComponent}
+    ]
   },
   {
-    path: 'veggies',
-    component: VeggiesComponent
+    path: 'veggies', children:[
+      {path:"",component:VeggiesComponent},
+      {path:"product",component:ProductComponent}
+    ]
   }
   
   

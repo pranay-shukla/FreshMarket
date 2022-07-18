@@ -1,6 +1,8 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { ProductsDataService } from 'src/app/services/products-data.service';
+
 
 
 @Component({
@@ -8,29 +10,36 @@ import { ProductsDataService } from 'src/app/services/products-data.service';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent implements OnInit,OnDestroy {
   
-
-  constructor(private _productDataService: ProductsDataService) { }
+  typeSearch ="";
+  
+  filter = ["bakery",'18']
+  constructor(private _productDataService: ProductsDataService) {
+    this._productDataService.searchVal.subscribe(res =>{
+      this.typeSearch = res;
+      // console.log(this.typeSearch)
+    });
+   }
+   
   
   products = this._productDataService.products;
-
+  
+  filterSideBarValue: any ;
+  
   ngOnInit(): void {
+    
+    this._productDataService.filterSideBarValue.subscribe(res =>{
+      this.filterSideBarValue=res;     
+      // console.log(this.filterSideBarValue)       
+    });
+    
   }
-  
+  ngOnDestroy(): void {
+    this._productDataService.filterSideBarValue.next([""]);
+  }
 }
 
 
 
-function ngOnInit() {
-  throw new Error('Function not implemented.');
-}
-// export class CarouselComponent implements OnInit {
-  
 
-//   constructor() { }
-  
-//   ngOnInit(): void {
-//   }
-//   products = productData;
-// }

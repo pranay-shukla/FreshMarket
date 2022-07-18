@@ -3,12 +3,67 @@
         CATEGORIES
     </div>
     <div class="sidebar-filter">
-        <div class="category">Category 1</div>
-        <div class="category">Category 2</div>
-        <div class="category">Category 3</div>
-        <div class="category">Category 4</div>
-        <div class="category">Category 5</div>
-        <div class="category">Category 6</div>
+        <div class="category">Fruits & Veggies
+            <div *ngIf="fruitsVeggiesSidebar" class="down"  (click)="OnClickSide('fruitsVeggies')" style="display: inline;">
+                <img src="../../../assets/down_arrow.jpg" alt="" width="14px" height="12px">
+            </div>
+            <div *ngIf="!fruitsVeggiesSidebar" class="up" (click)="OnClickSide('fruitsVeggies')" style="display: inline;">
+                <img src="../../../assets/up_arrow.jpg" alt="" width="14px" height="12px">
+            </div>
+        </div>
+        <div *ngIf="!fruitsVeggiesSidebar" class="sub-category category fruits">Fruits
+            <input type="checkbox" value="fruit" (change)="onChange($event)">
+        </div>
+        <div *ngIf="!fruitsVeggiesSidebar" class="sub-category category Veggies">Veggies
+            <input type="checkbox" value="vegetable" (change)="onChange($event)">
+        </div>
+        <div class="category">Bakery
+            <input type="checkbox" value="bakery" (change)="onChange($event)">
+        </div>
+        <div class="category">Vegan
+            <input type="checkbox" value="vegan" (change)="onChange($event)">
+        </div>
+        <div class="category">Meat
+            <input type="checkbox" value="meat" (change)="onChange($event)">
+        </div>
+        <div class="category">Dairy Products
+            <input type="checkbox" value="dairy" (change)="onChange($event)">
+        </div>
+        <div class="category">Brand
+            <div *ngIf="brandSidebar" class="down" (click)="OnClickSide('brand')" style="display: inline;">
+                <img src="../../../assets/down_arrow.jpg" alt="" width="14px" height="12px">
+            </div>
+            <div *ngIf="!brandSidebar" class="up" (click)="OnClickSide('brand')" style="display: inline;">
+                <img src="../../../assets/up_arrow.jpg" alt="" width="14px" height="12px">
+            </div>
+           
+        </div>
+        <div *ngIf="!brandSidebar" class="sub-category category">Amul
+            <input type="checkbox" value="$amul" (change)="onChange($event)">
+        </div>
+        <div *ngIf="!brandSidebar" class="sub-category category">Goldy
+            <input type="checkbox" value="$goldy" (change)="onChange($event)">
+        </div>
+        <div class="category">Price
+            <button *ngIf="priceSidebar" class="down"  (click)="OnClickSide('price')" style="display: inline;">
+                <img src="../../../assets/down_arrow.jpg" alt="" width="14px" height="12px">
+            </button> 
+            <button *ngIf="!priceSidebar" class="up"  (click)="OnClickSide('price')" style="display: inline;">
+                <img src="../../../assets/up_arrow.jpg" alt="" width="14px" height="12px">
+            </button>      
+        </div>
+        <div *ngIf="!priceSidebar" class="sub-category category">Less than 50
+            <input type="checkbox" value="50" (change)="onChange($event)">
+        </div>
+        <div *ngIf="!priceSidebar" class="sub-category category"> Less than 100
+            <input type="checkbox" value="100" (change)="onChange($event)">
+        </div>
+        <div *ngIf="!priceSidebar" class="sub-category category">Less than 150
+            <input type="checkbox" value="150" (change)="onChange($event)">
+        </div>
+        <div *ngIf="!priceSidebar" class="sub-category category">Less than 200
+            <input type="checkbox" value="200" (change)="onChange($event)">
+        </div>
     </div>
     <div class="image">
         <img src="../../../assets/sidebar_back.jpg" alt="" width="99%" height="200%">

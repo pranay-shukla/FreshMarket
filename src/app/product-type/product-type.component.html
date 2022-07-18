@@ -1,0 +1,28 @@
+<div class="main-area">
+    <app-sidebar></app-sidebar>
+<div class="carousel">
+    <div class="heading">
+        <ng-content></ng-content>
+        <button class="prev" type="submit" appPrevFeatured><img src="../../assets/left_arrow.jpg" alt="" width="14px" height="10px"></button>
+        <button class="next" type="submit" appNextFeatured><img src="../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
+    </div>
+    <div class="product-carousel">
+        
+        <div *ngFor="let product of products | searchBar:typeSearch | productFilter:filterSideBarValue" class="product" >
+            <a routerLink="product">
+                <div class="image">
+                    <!-- <div>New</div> -->
+                    <img src="../../assets/images/{{product.filename}}" alt="product image" >
+                </div>
+                <div class="details">
+                    <div class="name">{{product.title | shorten:18}}</div>
+                    <div class="price">&#x20B9; {{product.price}}</div>
+                    <div class="rating">{{product.rating}} &#9733;</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+</div>

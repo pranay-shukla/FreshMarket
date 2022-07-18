@@ -1,0 +1,17 @@
+.main-area{
+    display: flex;
+    margin-top: 1%;
+    
+}
+.main-area app-sidebar{
+    padding-left: 0.5%;
+    width: 18%;
+    border-left: 2px solid rgba(128, 128, 128, 0.363);
+    /* box-shadow: 2px 2px 2px grey; */
+    margin-right: 2px;
+}
+
+.main-area app-carousel{
+    width: 90%;
+    margin-left: 0.5%;
+}

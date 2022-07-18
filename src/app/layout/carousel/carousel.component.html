@@ -5,16 +5,18 @@
         <button class="next" type="submit" appNextFeatured><img src="../../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
     </div>
     <div class="featured-products-carousel">
-        <div *ngFor="let product of products" class="product" >
-            <div class="image">
-                <div>New</div>
-                <img src="../../../assets/images/{{product.filename}}" alt="product image" >
-            </div>
-            <div class="details">
-                <div class="name">{{product.title}}</div>
-                <div class="price">&#x20B9; {{product.price}}</div>
-                <div class="rating">{{product.rating}} &#9733;</div>
-            </div>
+        <div *ngFor="let product of products | searchBar:typeSearch | productFilter: filterSideBarValue" class="product" >
+            <a routerLink="product">
+                <div class="image">
+                    <div>New</div>
+                    <img src="../../../assets/images/{{product.filename}}" alt="product image" >
+                </div>
+                <div class="details">
+                    <div class="name">{{product.title | shorten:18}}</div>
+                    <div class="price">&#x20B9; {{product.price}}</div>
+                    <div class="rating">{{product.rating}} &#9733;</div>
+                </div>
+            </a>
         </div>
     </div>
     <div class="new-products heading">
@@ -23,15 +25,17 @@
         <button class="next" type="submit" appNextNew><img src="../../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
     </div>
     <div class="new-products-carousel">
-        <div *ngFor="let product of products" class="product" >
-            <div class="image">
-                <img src="../../../assets/images/{{product.filename}}" alt="product image" >
-            </div>
-            <div class="details">
-                <div class="name">{{product.title}}</div>
-                <div class="price">&#x20B9; {{product.price}}</div>
-                <div class="rating">{{product.rating}} &#9733;</div>
-            </div>
+        <div *ngFor="let product of (products | searchBar:typeSearch | productFilter:filterSideBarValue) " class="product" >
+            <a routerLink="product">
+                <div class="image">
+                    <img src="../../../assets/images/{{product.filename}}" alt="product image" >
+                </div>
+                <div class="details">
+                    <div class="name">{{product.title | shorten:18}}</div>
+                    <div class="price">&#x20B9; {{product.price}}</div>
+                    <div class="rating">{{product.rating}} &#9733;</div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
