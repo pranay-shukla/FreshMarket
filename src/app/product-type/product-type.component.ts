@@ -21,7 +21,7 @@ export class ProductTypeComponent implements OnInit,OnDestroy {
   // products=this.searchPipe.transform(this._ProductsDataService.products,this.typeSearch);
   products = this._ProductsDataService.products; 
  
-  filterSideBarValue: Array<string> = []; 
+  filterSideBarValue:any;
   ngOnInit(): void {
     this._ProductsDataService.filterSideBarValue.subscribe(res =>{
       this.filterSideBarValue = res;
@@ -30,7 +30,7 @@ export class ProductTypeComponent implements OnInit,OnDestroy {
     
   }
   ngOnDestroy(): void {
-    this._ProductsDataService.filterSideBarValue.next([]);
+   
   }
 
   

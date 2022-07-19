@@ -14,7 +14,11 @@ export class CarouselComponent implements OnInit,OnDestroy {
   
   typeSearch ="";
   
-  filter = ["bakery",'18']
+  // filter = {
+  //     "type": ['dairy',"bakery"],
+  //     "price":[18],
+  //     "brand":['amul']
+  //     }
   constructor(private _productDataService: ProductsDataService) {
     this._productDataService.searchVal.subscribe(res =>{
       this.typeSearch = res;
@@ -36,7 +40,7 @@ export class CarouselComponent implements OnInit,OnDestroy {
     
   }
   ngOnDestroy(): void {
-    this._productDataService.filterSideBarValue.next([""]);
+
   }
 }
 

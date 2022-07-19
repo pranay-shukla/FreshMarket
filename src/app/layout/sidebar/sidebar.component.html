@@ -12,22 +12,22 @@
             </div>
         </div>
         <div *ngIf="!fruitsVeggiesSidebar" class="sub-category category fruits">Fruits
-            <input type="checkbox" value="fruit" (change)="onChange($event)">
+            <input type="checkbox" value="fruit" (change)="onChange()" [(ngModel)] = "sidebarValue.fruit">
         </div>
         <div *ngIf="!fruitsVeggiesSidebar" class="sub-category category Veggies">Veggies
-            <input type="checkbox" value="vegetable" (change)="onChange($event)">
+            <input type="checkbox" value="vegetable" (change)="onChange()" [(ngModel)] = "sidebarValue.vegetable">
         </div>
-        <div class="category">Bakery
-            <input type="checkbox" value="bakery" (change)="onChange($event)">
+        <div class="category">Bakery 
+            <input type="checkbox" value="bakery" (change)="onChange()" [(ngModel)] = "sidebarValue.bakery">
         </div>
         <div class="category">Vegan
-            <input type="checkbox" value="vegan" (change)="onChange($event)">
+            <input type="checkbox" value="vegan" (change)="onChange()" [(ngModel)] = "sidebarValue.vegan">
         </div>
         <div class="category">Meat
-            <input type="checkbox" value="meat" (change)="onChange($event)">
+            <input type="checkbox" value="meat" (change)="onChange()" [(ngModel)] = "sidebarValue.meat">
         </div>
         <div class="category">Dairy Products
-            <input type="checkbox" value="dairy" (change)="onChange($event)">
+            <input type="checkbox" value="dairy" (change)="onChange()" [(ngModel)] = "sidebarValue.dairy">
         </div>
         <div class="category">Brand
             <div *ngIf="brandSidebar" class="down" (click)="OnClickSide('brand')" style="display: inline;">
@@ -39,10 +39,10 @@
            
         </div>
         <div *ngIf="!brandSidebar" class="sub-category category">Amul
-            <input type="checkbox" value="$amul" (change)="onChange($event)">
+            <input type="checkbox" value="$amul" (change)="onChange()" [(ngModel)] = "sidebarValue.brand.amul">
         </div>
         <div *ngIf="!brandSidebar" class="sub-category category">Goldy
-            <input type="checkbox" value="$goldy" (change)="onChange($event)">
+            <input type="checkbox" value="$goldy" (change)="onChange()" [(ngModel)] = "sidebarValue.brand.goldy">
         </div>
         <div class="category">Price
             <button *ngIf="priceSidebar" class="down"  (click)="OnClickSide('price')" style="display: inline;">
@@ -53,16 +53,16 @@
             </button>      
         </div>
         <div *ngIf="!priceSidebar" class="sub-category category">Less than 50
-            <input type="checkbox" value="50" (change)="onChange($event)">
+            <input type="checkbox" value="50" (change)="onChange()" [(ngModel)] = "sidebarValue.price[50]">
         </div>
         <div *ngIf="!priceSidebar" class="sub-category category"> Less than 100
-            <input type="checkbox" value="100" (change)="onChange($event)">
+            <input type="checkbox" value="100" (change)="onChange()" [(ngModel)] = "sidebarValue.price[100]">
         </div>
         <div *ngIf="!priceSidebar" class="sub-category category">Less than 150
-            <input type="checkbox" value="150" (change)="onChange($event)">
+            <input type="checkbox" value="150" (change)="onChange()" [(ngModel)] = "sidebarValue.price[150]">
         </div>
         <div *ngIf="!priceSidebar" class="sub-category category">Less than 200
-            <input type="checkbox" value="200" (change)="onChange($event)">
+            <input type="checkbox" value="200" (change)="onChange()" [(ngModel)] = "sidebarValue.price[200]">
         </div>
     </div>
     <div class="image">

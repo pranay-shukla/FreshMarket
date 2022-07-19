@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductsDataService } from 'src/app/services/products-data.service';
 import { UpDownSideService } from 'src/app/services/up-down-side.service';
 
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -15,6 +16,26 @@ export class SidebarComponent implements OnInit,OnDestroy {
               private _productDataService:ProductsDataService
     ) { }
 
+  sidebarValue={
+    "fruit" : true,
+    "vegetable" : true,
+    "bakery" : true,
+    "vegan" : true,
+    "meat" : true,
+    "dairy" : true,
+    "brand" : {
+      "amul" : false,
+      "goldy": false
+    },
+    'price':{
+      "50" : false,
+    "100" : false,
+    "150" : false,
+    "200" : false
+    }
+    
+  }
+  
   ngOnInit(): void {
     this._upDownSideService.fruitsVeggiesSidebar.subscribe(response=>
       {this.fruitsVeggiesSidebar = response});
@@ -22,11 +43,15 @@ export class SidebarComponent implements OnInit,OnDestroy {
       {this.brandSidebar = response});
     this._upDownSideService.priceSidebar.subscribe(response=>
       {this.priceSidebar = response});
+     
+    
+      
   }
   ngOnDestroy(): void {
     this._upDownSideService.fruitsVeggiesSidebar.next(true)
     this._upDownSideService.brandSidebar.next(true)
     this._upDownSideService.priceSidebar.next(true)
+    this._productDataService.filterSideBarValue.next(this.sidebarValue)
   }
   
   OnClickSide(categoryType:string){
@@ -41,13 +66,9 @@ export class SidebarComponent implements OnInit,OnDestroy {
     this._upDownSideService.priceSidebar.next(!this.priceSidebar)
 
   }
-  onChange(event:any){
-    if(event.target.checked){
-      this._productDataService.addFilterSideBarValue(event.target.value);      
-    }
-    else
-    {
-      this._productDataService.removeFilterSideBarValue(event.target.value);
-    }
+
+  onChange(){
+    this._productDataService.filterSideBarValue.next(this.sidebarValue)
+    // console.log(this.sidebarValue)
   }
 }

@@ -12,6 +12,7 @@ interface product{
   "price": any,
   "rating": Number
 }
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,31 +22,31 @@ export class ProductsDataService {
   products:product[]=productData;
   searchVal = new BehaviorSubject(""); // for home-page filt
   typeSearch = new BehaviorSubject(""); // for product-type pages filter
-  filterSideBarValue = new BehaviorSubject<string[]> ([]); // for side-bar filter
+
+  filterSideBarValue = new BehaviorSubject({
+      "fruit" : true,
+      "vegetable" : true,
+      "bakery" : true,
+      "vegan" : true,
+      "meat" : true,
+      "dairy" : true,
+      
+      "brand" : {
+        "amul" : false,
+        "goldy": false
+      },
+      
+      'price':{
+        "50" : false,
+      "100" : false,
+      "150" : false,
+      "200" : false
+      }
+    }); // for side-bar filter
   
   constructor() { 
     
     
   }
-  addFilterSideBarValue(value:string){
-    
-    let tempArr = this.filterSideBarValue.value;
-    tempArr.push(value);
-    this.filterSideBarValue.next(tempArr)
-    // console.log(this.filterSideBarValue.value);
-    
-  }
-  removeFilterSideBarValue(value:any){
-    let tempArr = this.filterSideBarValue.value;
-    for(let i=0; i<tempArr.length;i++)
-    {
-      if(tempArr[i] === value)
-      {
-        tempArr.splice(i,1);
-      }
-    }
-    this.filterSideBarValue.next(tempArr);
-    // console.log(this.filterSideBarValue.value);
-  }
-  
+ 
 }
