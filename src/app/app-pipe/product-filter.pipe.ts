@@ -7,7 +7,7 @@ export class ProductFilterPipe implements PipeTransform {
 
   transform(value: any, searchTerms: any){
 
-    console.log(searchTerms);
+    console.log(searchTerms.fruit);
     return value.filter( function(obj: any ){
       let flagPrice = -1;
       let flagType = -1;

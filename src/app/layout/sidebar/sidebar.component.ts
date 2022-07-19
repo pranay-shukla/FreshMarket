@@ -51,7 +51,7 @@ export class SidebarComponent implements OnInit,OnDestroy {
     this._upDownSideService.fruitsVeggiesSidebar.next(true)
     this._upDownSideService.brandSidebar.next(true)
     this._upDownSideService.priceSidebar.next(true)
-    this._productDataService.filterSideBarValue.next(this.sidebarValue)
+   
   }
   
   OnClickSide(categoryType:string){
