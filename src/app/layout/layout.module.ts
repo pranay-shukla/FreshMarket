@@ -8,11 +8,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { NextFeaturedDirective } from './carousel/next-featured.directive';
-import { PrevFeaturedDirective } from './carousel/prev-featured.directive';
-import { NextNewDirective } from './carousel/next-new.directive';
-import { PrevNewDirective } from './carousel/prev-new.directive';
+
 import { AppPipeModule } from '../app-pipe/app-pipe.module';
+import { AppDirectivesModule } from '../app-directives/app-directives.module';
 
 
 
@@ -26,17 +24,14 @@ import { AppPipeModule } from '../app-pipe/app-pipe.module';
     CarouselComponent,
     FooterComponent,
     
-    NextFeaturedDirective,
-    NextNewDirective,
-    PrevFeaturedDirective,
-    PrevNewDirective,
     
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    AppPipeModule
+    AppPipeModule,
+    AppDirectivesModule
     
   ],
   exports: [

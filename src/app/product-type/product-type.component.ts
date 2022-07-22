@@ -18,20 +18,43 @@ export class ProductTypeComponent implements OnInit,OnDestroy {
       // console.log(res);
     })
    }
-  // products=this.searchPipe.transform(this._ProductsDataService.products,this.typeSearch);
+  
   products = this._ProductsDataService.products; 
  
   filterSideBarValue:any;
   ngOnInit(): void {
     this._ProductsDataService.filterSideBarValue.subscribe(res =>{
       this.filterSideBarValue = res;
-      })
+      });
+      // this._ProductsDataService.filteredProduct.subscribe(res =>{
+      //   this.products = res;
+      //   })
     // console.log(this.filterSideBarValue);
     
   }
   ngOnDestroy(): void {
-   
+    this._ProductsDataService.filterSideBarValue.next({
+      "fruit" : true,
+      "vegetable" : true,
+      "bakery" : true,
+      "vegan" : true,
+      "meat" : true,
+      "dairy" : true,
+      "brand" : {
+        "amul" : false,
+        "goldy": false
+      },
+      'price':{
+        "50" : false,
+      "100" : false,
+      "150" : false,
+      "200" : false
+      }
+      
+    } )
   }
-
+  Onclickproduct(product:any){
+    this._ProductsDataService.productDetail(product);
+  }
   
 }

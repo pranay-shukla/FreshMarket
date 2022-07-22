@@ -1,9 +1,9 @@
 <section class="highlights">
     <section class="main-highlights">
     <div class="images">
-        <input type="radio" id="r1" name="r" checked>
-        <input type="radio" id="r2" name="r">
-        <input type="radio" id="r3" name="r">
+        <input type="radio" id = "r1"  name="r" checked>
+        <input type="radio"  id = "r2"  name="r">
+        <input type="radio" id = "r3"  name="r">
         <div class="image s1">
             <img src="../../../assets/high1.webp" alt="">
         </div>
@@ -14,10 +14,15 @@
             <img src="../../../assets/high3.jpg" alt="">
         </div>
     </div>
+    <div class="auto">
+        <div class="auto1"></div>
+        <div class="auto2"></div>
+        <div class="auto3"></div>
+    </div>
     <div class="bars">
-        <label for="r1" class="bar"></label>
-        <label for="r2" class="bar"></label>
-        <label for="r3" class="bar"></label>
+        <label for="r1" #radio class="bar" [ngModel] = ""></label>
+        <label for="r2" #radio class="bar" [ngModel] =""></label>
+        <label for="r3" #radio class="bar" [ngModel] = "" ></label>
         
     </div>
     </section>

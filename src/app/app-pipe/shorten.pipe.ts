@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ShortenPipe implements PipeTransform {
 
-  transform(value: string, maxLetters: any): string {
+  transform(value: String, maxLetters: any): String {
     if(maxLetters < value.length)
     return value.substring(0,maxLetters) + "...";
 

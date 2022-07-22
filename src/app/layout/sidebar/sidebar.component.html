@@ -3,68 +3,27 @@
         CATEGORIES
     </div>
     <div class="sidebar-filter">
-        <div class="category">Fruits & Veggies
-            <div *ngIf="fruitsVeggiesSidebar" class="down"  (click)="OnClickSide('fruitsVeggies')" style="display: inline;">
-                <img src="../../../assets/down_arrow.jpg" alt="" width="14px" height="12px">
+
+        <ng-container *ngFor="let div of sideBar">
+            <div class="category">{{div.category}}
+                <input *ngIf="div.input" type="checkbox" value= {{div.value}} (change)="onChange()" [(ngModel)] = "div.type">
+                <ng-container *ngIf = "!div.input">
+                    <div *ngIf="div.var" class="down"  (click)="OnClickSide(div.varType)" style="display: inline;">
+                        <img src="../../../assets/down_arrow.jpg" alt="" width="14px" height="12px">
+                    </div>
+                    <div *ngIf="!div.var" class="up" (click)="OnClickSide(div.varType)" style="display: inline;">
+                        <img src="../../../assets/up_arrow.jpg" alt="" width="14px" height="12px">
+                    </div>
+                </ng-container>
             </div>
-            <div *ngIf="!fruitsVeggiesSidebar" class="up" (click)="OnClickSide('fruitsVeggies')" style="display: inline;">
-                <img src="../../../assets/up_arrow.jpg" alt="" width="14px" height="12px">
-            </div>
-        </div>
-        <div *ngIf="!fruitsVeggiesSidebar" class="sub-category category fruits">Fruits
-            <input type="checkbox" value="fruit" (change)="onChange()" [(ngModel)] = "sidebarValue.fruit">
-        </div>
-        <div *ngIf="!fruitsVeggiesSidebar" class="sub-category category Veggies">Veggies
-            <input type="checkbox" value="vegetable" (change)="onChange()" [(ngModel)] = "sidebarValue.vegetable">
-        </div>
-        <div class="category">Bakery 
-            <input type="checkbox" value="bakery" (change)="onChange()" [(ngModel)] = "sidebarValue.bakery">
-        </div>
-        <div class="category">Vegan
-            <input type="checkbox" value="vegan" (change)="onChange()" [(ngModel)] = "sidebarValue.vegan">
-        </div>
-        <div class="category">Meat
-            <input type="checkbox" value="meat" (change)="onChange()" [(ngModel)] = "sidebarValue.meat">
-        </div>
-        <div class="category">Dairy Products
-            <input type="checkbox" value="dairy" (change)="onChange()" [(ngModel)] = "sidebarValue.dairy">
-        </div>
-        <div class="category">Brand
-            <div *ngIf="brandSidebar" class="down" (click)="OnClickSide('brand')" style="display: inline;">
-                <img src="../../../assets/down_arrow.jpg" alt="" width="14px" height="12px">
-            </div>
-            <div *ngIf="!brandSidebar" class="up" (click)="OnClickSide('brand')" style="display: inline;">
-                <img src="../../../assets/up_arrow.jpg" alt="" width="14px" height="12px">
-            </div>
-           
-        </div>
-        <div *ngIf="!brandSidebar" class="sub-category category">Amul
-            <input type="checkbox" value="$amul" (change)="onChange()" [(ngModel)] = "sidebarValue.brand.amul">
-        </div>
-        <div *ngIf="!brandSidebar" class="sub-category category">Goldy
-            <input type="checkbox" value="$goldy" (change)="onChange()" [(ngModel)] = "sidebarValue.brand.goldy">
-        </div>
-        <div class="category">Price
-            <button *ngIf="priceSidebar" class="down"  (click)="OnClickSide('price')" style="display: inline;">
-                <img src="../../../assets/down_arrow.jpg" alt="" width="14px" height="12px">
-            </button> 
-            <button *ngIf="!priceSidebar" class="up"  (click)="OnClickSide('price')" style="display: inline;">
-                <img src="../../../assets/up_arrow.jpg" alt="" width="14px" height="12px">
-            </button>      
-        </div>
-        <div *ngIf="!priceSidebar" class="sub-category category">Less than 50
-            <input type="checkbox" value="50" (change)="onChange()" [(ngModel)] = "sidebarValue.price[50]">
-        </div>
-        <div *ngIf="!priceSidebar" class="sub-category category"> Less than 100
-            <input type="checkbox" value="100" (change)="onChange()" [(ngModel)] = "sidebarValue.price[100]">
-        </div>
-        <div *ngIf="!priceSidebar" class="sub-category category">Less than 150
-            <input type="checkbox" value="150" (change)="onChange()" [(ngModel)] = "sidebarValue.price[150]">
-        </div>
-        <div *ngIf="!priceSidebar" class="sub-category category">Less than 200
-            <input type="checkbox" value="200" (change)="onChange()" [(ngModel)] = "sidebarValue.price[200]">
-        </div>
-    </div>
+            <ng-container *ngIf="!div.var">
+                <div  *ngFor="let subCategory of div.sub" class="sub-category category">{{subCategory.category}}
+                    <input type="checkbox" value= {{subCategory.value}} (change)="onChange()" [(ngModel)] = "subCategory.type">
+                </div>
+            </ng-container>
+
+        </ng-container>
+
     <div class="image">
         <img src="../../../assets/sidebar_back.jpg" alt="" width="99%" height="200%">
     </div>

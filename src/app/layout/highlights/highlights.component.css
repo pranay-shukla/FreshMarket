@@ -22,9 +22,33 @@
     flex-direction: row;
     width: 500%;
     height: 99%;
+    animation: slide 0s 0;
     
     
-    
+}
+@keyframes slide {
+    0%{
+        margin-left: 0%;
+        /* transform: translateX(0%); */
+    }
+    25%{
+        /* transform: translateX(0%); */
+        margin-left: 0%;
+    }
+    50%{
+        /* transform: translateX(-100%); */
+        margin-left: -100%;
+    }
+    75%{
+        /* transform: translateX(-200%); */
+        margin-left: -200%;
+        transition-duration: 1ms;
+    }
+    100%{
+        
+        /* transform: translateX(0%); */
+        margin-left:0%;
+    }
 }
 .main-highlights .image{
     width: 20% ;
@@ -62,8 +86,8 @@
     background-color: #9ae70a;
 }
 input[name = r]{
-    position: absolute;
-    visibility: hidden;
+    /* position: absolute; */
+    display: none;
 }
 
 #r1:checked ~ .s1{
@@ -74,6 +98,40 @@ input[name = r]{
 }
 #r3:checked ~ .s1{
     margin-left: -40%;
+}
+
+.auto{
+    display: flex;
+    position: absolute;
+    right: 5%;
+    bottom: 0;
+    
+    justify-content: center;
+    margin-top: 1%;
+    
+}
+.auto div{
+    margin: 3px;
+    width: 1px;
+    padding: 2px;
+    border-radius: 200em;
+    
+    border: 3px solid rgba(48, 47, 47, 0.89) ;
+    transition: 1s;
+}
+
+.auto div{
+    margin-right: 3px;
+    
+}
+#r1:checked ~ .auto .auto1{
+    margin-left: 0;
+}
+#r2:checked ~ .auto .auto2{
+    margin-left: 0;
+}
+#r3:checked ~ .auto .auto3{
+    margin-left: 0;
 }
 .side-highlights{
 width: 30%;

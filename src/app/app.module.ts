@@ -20,6 +20,9 @@ import { ProductsDataService } from './services/products-data.service';
 
 import { AppPipeModule } from './app-pipe/app-pipe.module';
 import { ProductTypeComponent } from './product-type/product-type.component';
+import { AppDirectivesModule } from './app-directives/app-directives.module';
+
+
 
 
 @NgModule({
@@ -39,13 +42,15 @@ import { ProductTypeComponent } from './product-type/product-type.component';
     ProductTypeComponent,
     
     
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
     UserModule,
-    AppPipeModule
+    AppPipeModule,
+    AppDirectivesModule
   ],
   exports:[
     

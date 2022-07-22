@@ -9,7 +9,7 @@
     <div class="product-carousel">
         
         <div *ngFor="let product of products | searchBar:typeSearch | productFilter:filterSideBarValue" class="product" >
-            <a routerLink="product">
+            <a routerLink="product" (click)="Onclickproduct(product)">
                 <div class="image">
                     <!-- <div>New</div> -->
                     <img src="../../assets/images/{{product.filename}}" alt="product image" >

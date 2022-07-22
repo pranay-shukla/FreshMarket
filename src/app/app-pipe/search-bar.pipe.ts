@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SearchBarPipe implements PipeTransform {
 
   transform(value: any,searchTerm: string): any {
-    
+   
     if(searchTerm.length === 0)
     {     
       return value;

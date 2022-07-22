@@ -5,11 +5,9 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 })
 export class NextFeaturedDirective {
 
-  constructor(private el: ElementRef) {
-   
-    
-   }
-   @HostListener('click')
+  constructor(private el:ElementRef) { }
+  
+  @HostListener('click')
    nextFunc(){
     var element = this.el.nativeElement.parentElement.parentElement.children[1];
     var item = element.getElementsByClassName("product");
@@ -17,5 +15,6 @@ export class NextFeaturedDirective {
     {
       element.append(item[0]);
     }
-   }
+  }
+
 }

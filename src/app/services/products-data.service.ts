@@ -20,33 +20,42 @@ export class ProductsDataService {
   
   static products: any;
   products:product[]=productData;
-  searchVal = new BehaviorSubject(""); // for home-page filt
+  searchVal = new BehaviorSubject(""); // for home-page filter
   typeSearch = new BehaviorSubject(""); // for product-type pages filter
+ 
+
+  productInfo = new BehaviorSubject({});
 
   filterSideBarValue = new BehaviorSubject({
-      "fruit" : true,
-      "vegetable" : true,
-      "bakery" : true,
-      "vegan" : true,
-      "meat" : true,
-      "dairy" : true,
-      
-      "brand" : {
-        "amul" : false,
-        "goldy": false
-      },
-      
-      'price':{
-        "50" : false,
-      "100" : false,
-      "150" : false,
-      "200" : false
-      }
-    }); // for side-bar filter
+    "fruit" : true,
+    "vegetable" : true,
+    "bakery" : true,
+    "vegan" : true,
+    "meat" : true,
+    "dairy" : true,
+    "brand" : {
+      "amul" : false,
+      "goldy": false
+    },
+    'price':{
+      "50" : false,
+    "100" : false,
+    "150" : false,
+    "200" : false
+    }
+    
+  }); // for side-bar filter
   
   constructor() { 
     
     
+  }
+  filteredValue(sidebarValue : any){
+    this.filterSideBarValue.next(sidebarValue);
+  }
+
+  productDetail(product:any){
+    this.productInfo.next(product);
   }
  
 }

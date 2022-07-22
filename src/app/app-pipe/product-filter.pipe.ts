@@ -1,13 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'productFilter'
+  name: 'productFilter',
+  // pure: false
 })
 export class ProductFilterPipe implements PipeTransform {
 
   transform(value: any, searchTerms: any){
 
-    console.log(searchTerms.fruit);
+    
     return value.filter( function(obj: any ){
       let flagPrice = -1;
       let flagType = -1;
