@@ -27,7 +27,7 @@
     flex-direction: column;
     flex-wrap:wrap;
     width: 14vw;
-    height: 15rem;
+    height: 16rem;
     text-align: center;
     margin: 0.35em;
     margin-top: 1%;
@@ -119,4 +119,10 @@
     
     width: 90%;
     margin-left: 0.5%;
+}
+.add-to-cart button{
+    padding: 0 2%;
+    text-transform: uppercase;
+    color: rgba(254, 250, 250, 0.997);
+    background-color:#8bc731;
 }

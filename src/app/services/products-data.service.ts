@@ -23,7 +23,8 @@ export class ProductsDataService {
   searchVal = new BehaviorSubject(""); // for home-page filter
   typeSearch = new BehaviorSubject(""); // for product-type pages filter
  
-
+  productsCart:product[] =[];
+  countProd:number = 0 ;
   productInfo = new BehaviorSubject({});
 
   filterSideBarValue = new BehaviorSubject({
@@ -57,5 +58,5 @@ export class ProductsDataService {
   productDetail(product:any){
     this.productInfo.next(product);
   }
- 
+  
 }

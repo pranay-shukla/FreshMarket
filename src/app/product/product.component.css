@@ -1,52 +1,221 @@
-.product{
+.product-area{
+    margin-top: 1%;
+    display: flex;
+    
 
 }
-.product .left{
+.product-area .left{
+    width: 45%;
+    height: 50%;
+    padding: 0%;
+    
+    margin-left: 7%;
+    text-align: center;
+    /* border: 2px solid red; */
 
 }
-.product .left .image img{
-
+.product-area .left .image img{
+    padding-left: 0%;
+    max-height: 60vh;
+    min-width: 100%;
+    object-fit: contain;
+    /* border:2px solid green; */
 }
-.product .right{
-
+.product-area .right{
+    width: 45%;
+    height: 60%;
+    margin-left: 1%;
+    margin-right: 1%;
+    
+    /* border: 2px solid red; */
 }
 .heading-1{
+    font-size: 3em;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.792);
+    font-family:  serif;
 
 }
 .heading-2{
+    font-size: 1.7em;
+    font-weight: 600;
+    
+    text-transform: capitalize;
 
 }
+.heading-3{
+    font-size: 1em;
+    
+}
+
 .right input{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid grey;
+    box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.413);
 
 }
 .add-to-cart{
-
+    width: 40%;
+    height: 45px;
+    font-size: 1.8em;
+    background-color: #8bc532;
+    color: white;
+    font-weight: 700;
+    border-radius: 300em;
+    border: none;
+    box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.413);
+    margin: 2% 4%;
 }
 .save{
-
+    width: 20%;
+    height: 45px;
+    margin-right: 2%;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: rgba(128, 128, 128, 0.688);
+    box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.413);
+    border-radius: 300em;
 }
 .description{
+    margin: 1% 0 2% 0;
+    font-size: 1.5em;
 
 }
 .pack-size{
+    
+    padding-left: 1%;
+    margin: 2% 5%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgba(128, 128, 128, 0.518);
+    border-radius: 0.135em;
+    box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.262);
 
 }
 .pack-size .check{
-
+    padding-bottom: 0%;
+    width: 40px;
+    height:110%;
+    background-color: #8bc532;
+    text-align: center;
 }
 
 .product-description{
+    margin-top: 3%;
+    margin-left: 7%;
 
 }
 .title{
-
+    font-size: 2.5em;
+    padding-left: 0.7%;
+    border-bottom: 3px solid rgba(128, 128, 128, 0.338);
 }
 .rating-reviews{
+    margin: 2% auto;
+    width: 95%;
+    height: 30vh;
+    border: 1px solid rgba(128, 128, 128, 0.276);
 
 }
-.featured-products-carousel{
+
+.product-carousel
+{
+    display: flex;
+    flex-wrap: wrap;
+    width: 99%;
+    height: 16rem ;
+    margin-left: 2.5%;
+    overflow: hidden;
+    
+    
+}
+.product{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+    width: 13vw;
+    height: 16rem;
+    text-align: center;
+    margin: 0.35em;
+    margin-top: 1%;
+    border: 2px solid rgba(128, 128, 128, 0.335);
+    box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.315);
+    
+}
+.product::-webkit-scrollbar{
+    display: none;
+}
+
+.product-carousel .image img{
+    width: 100%;
+    height: 11rem;
+    object-fit: cover;
 
 }
+
+/* .image div{
+    position: absolute;
+    width: 30%;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: white;
+    background-color: rgba(128, 128, 128, 0.993) ;
+    
+    
+} */
+.product .name{
+    font-style: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.25em;
+    max-height: 1.2em;
+    font-weight: 800;
+    text-overflow: clip;
+}
+.product .details{
+    margin-top: 0.5em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow: hidden;
+    line-height: 1.5em;
+    color: #5a585a;
+
+}
+.product .price{
+    font-size: 1.25em;
+    font-weight: 900;
+}
+.product .rating{
+    font-size: 1.15em;
+}
+
+.prev{
+    position: absolute;
+    top:3%;
+    right: 8%;
+}
+.next{
+    position: absolute;
+    top:3%;
+    right: 5%;
+}
+.prev,.next{
+    background: url(../../assets/left_arrow.jpg);
+}
+.prev:hover img,
+.next:hover img{
+    opacity: 2;
+}
+.frequently-bought-carousel,
 .similar-products-carousel{
-
+    position: relative;
+}
+.add-to-cart button{
+    padding: 0 2%;
+    text-transform: uppercase;
+    color: rgba(254, 250, 250, 0.997);
+    background-color:#8bc731;
 }

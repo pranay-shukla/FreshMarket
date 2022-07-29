@@ -4,6 +4,9 @@ import { NextFeaturedDirective } from './next-featured.directive';
 import { NextNewDirective } from './next-new.directive';
 import { PrevFeaturedDirective } from './prev-featured.directive';
 import { PrevNewDirective } from './prev-new.directive';
+import { CurrencyConverterDirective } from './currency-converter.directive';
+import { NextProductDirective } from './next-product.directive';
+import { PrevProductDirective } from './prev-product.directive';
 
 
 
@@ -16,7 +19,10 @@ import { PrevNewDirective } from './prev-new.directive';
     NextFeaturedDirective,
     NextNewDirective,
     PrevFeaturedDirective,
-    PrevNewDirective
+    PrevNewDirective,
+    CurrencyConverterDirective,
+    NextProductDirective,
+    PrevProductDirective
   ],
   imports: [
     CommonModule
@@ -25,7 +31,10 @@ import { PrevNewDirective } from './prev-new.directive';
     NextFeaturedDirective,
     NextNewDirective,
     PrevFeaturedDirective,
-    PrevNewDirective
+    PrevNewDirective,
+    CurrencyConverterDirective,
+    NextProductDirective,
+    PrevProductDirective
   ]
 })
 export class AppDirectivesModule { }

@@ -1,44 +1,87 @@
-<div class="product">
+<div class="product-area">
     <div class="left">
         <div class="image">
             <img src="../../assets/images/{{product.filename}}" alt="" >
         </div>
     </div>
     <div class="right">
-        <div class="heading-2">{{product.type}}</div>
+        <div class="heading-2" style="text-decoration: underline;">{{product.type}}</div>
         <div class="heading-1">{{product.title}}</div>
-        <div class="heading-2">&#x20B9; {{product.price}}</div>
+        <div class="heading-2"> Price : &#x20B9; {{product.price}}</div>
         <div class="rating heading-2">{{product.rating}} &#9733;</div>
-        <input type="number" >
-        <button class="add-to-cart">ADD TO CART</button>
+        <input type="number" value="1" #countVal>
+        <button class="add-to-cart" (click)="onClickCart(countVal.value,product)">ADD TO CART</button>
         <button class="save">SAVE</button>
-        <div class="description">Delivery Standard: Today 9:00AM - 11:00AM</div>
+        <button class="save">Share</button>
+        <div class="description" style="margin: 4% 0 4% 0;">Delivery Standard: Today 9:00AM - 11:00AM</div>
         <div class="heading-2">Pack Sizes</div>
         <div class="pack-size heading-1">
             1 kg 
-            <div class="price heading-2">&#x20B9; {{product.price}}</div>
-            <div class="check"><img src="../../assets/check.png" alt=""></div>
+            <div class="price heading-3">&#x20B9; {{product.price}}</div>
+            <div class="check"><img src="../../assets/check.png" alt="" width="30px" height="30px"></div>
         </div>
         <div class="pack-size heading-1">
             2 kg 
-            <div class="price">&#x20B9; {{product.price * 2}}</div>
-            <div class="check"><img src="../../assets/check.png" alt=""></div>
+            <div class="price heading-3">&#x20B9; {{product.price * 2}}</div>
+            <div class="check"><img src="../../assets/check.png" alt="" width="30px" height="30px" background-color="#8bc532" ></div>
         </div>
     </div>
 </div>
 <div class="product-description">
     <div class="title">{{product.title}}</div>
-    <div class="description">{{product.description}}</div>
+    <div class="description">{{product.description}}.
+        <br>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam ut expedita dolores provident aperiam quaerat debitis amet similique recusandae dolore dignissimos voluptates, velit facilis quia nostrum voluptate totam hic error corporis magnam a quos maxime officia! Maxime dicta eligendi, eum minus repudiandae iure aliquid ipsam molestias excepturi, unde assumenda porro laboriosam asperiores eveniet quaerat odit! Possimus labore, sunt ullam cupiditate earum assumenda corporis dignissimos. Consequuntur suscipit neque sequi maiores laborum!
+    </div>
     <div class="policy">
         <div class="title">Variable Weight Policy</div>
         <div class="description">Please note that the item(s) in this product may vary slightly in size and weight. Hence, the actual weight of the product delivered can have a small variance. You will be billed based on the actual weight during order processing.</div>
     </div>
+    <div class="title">Rating and Reviews</div>
     <div class="rating-reviews"></div>
     <div class="frequently-bought-carousel">
-        <div class="tile">Frequently Bought Together</div>
+        <div class="title">Frequently Bought Together</div>
+        
+        <button class="prev" type="submit" appPrevProduct><img src="../../assets/left_arrow.jpg" alt="" width="14px" height="10px"></button>
+        <button class="next" type="submit" appNextProduct><img src="../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
+        <div class="product-carousel">
+            <div *ngFor="let product of frequentlyBoughtProducts" class="product" >
+                <a routerLink="product" (click)="Onclickproduct(product)">
+                    <div class="image">
+                        <!-- <div>New</div> -->
+                        <img src="../../assets/images/{{product.filename}}" alt="product image" >
+                    </div>
+                    <div class="details">
+                        <div class="name">{{product.title | shorten:18}}</div>
+                        <div class="price">&#x20B9; {{product.price}}</div>
+                        <div class="rating">{{product.rating}} &#9733;</div>
+                        <div class="add-to-cart"><button>Add To Cart</button></div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
     <div class="similar-products-carousel">
         <div class="title">Similar Products</div>
+        <button class="prev" type="submit" appPrevProduct><img src="../../assets/left_arrow.jpg" alt="" width="14px" height="10px"></button>
+        <button class="next" type="submit" appNextProduct><img src="../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
+
+        <div class="product-carousel">
+            <div *ngFor="let product of similarProducts| searchBar:product.type" class="product" >
+                <a routerLink="product" (click)="Onclickproduct(product)">
+                    <div class="image">
+                        <!-- <div>New</div> -->
+                        <img src="../../assets/images/{{product.filename}}" alt="product image" >
+                    </div>
+                    <div class="details">
+                        <div class="name">{{product.title | shorten:18}}</div>
+                        <div class="price">&#x20B9; {{product.price}}</div>
+                        <div class="rating">{{product.rating}} &#9733;</div>
+                        <div class="add-to-cart"><button>Add To Cart</button></div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
