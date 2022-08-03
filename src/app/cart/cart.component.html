@@ -1,7 +1,7 @@
 <div class="cart">
     <div class="products-area">
         <div class="heading">Your Items :</div>
-        <div class="products" *ngFor="let product of productsCart">
+        <div class="products" *ngFor="let product of productsCart;index as i">
             <div class="image"><img src="../../assets/images/{{product.filename}}" alt=""></div>
             <div class="product-details">
             <div class="title">{{product.title}}</div>
@@ -11,7 +11,7 @@
             
             <div class="button-area">
             <div class="button-minus"><button> - </button></div>
-            <div class="count-input"><input type="" value={{countValue}} ></div>
+            <div class="count-input"><input type="" value={{countValue[i]}} ></div>
             <div class="button-add"><button> + </button></div>
             </div>
             <div class="remove"><button>Remove</button></div>

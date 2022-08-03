@@ -5,19 +5,23 @@
         <button class="next" type="submit" appNextFeatured><img src="../../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
     </div>
     <div class="featured-products-carousel">
-        <div *ngFor="let product of products|searchBar:typeSearch |productFilter:filterSideBarValue" class="product" >
-            <a routerLink="product" (click)="Onclickproduct(product)">
+        <div *ngFor="let product of products|searchBar:typeSearch |productFilter:filterSideBarValue; index as i" class="product" >
+            <a routerLink="product" (click)="Onclickproduct(product,i)">
                 <div class="image">
                     <div>New</div>
                     <img src="../../../assets/images/{{product.filename}}" alt="product image" >
                 </div>
+            </a>
                 <div class="details">
-                    <div class="name">{{product.title | shorten:25}}</div>
+                    <a routerLink="product" (click)="Onclickproduct(product,i)">
+                        <div class="name">{{product.title | shorten:25}}</div>
+                    </a>
                     <div class="price">&#x20B9; {{product.price}}</div>
                     <div class="rating">{{product.rating}} &#9733;</div>
-                    <div class="add-to-cart"><button>Add To Cart</button></div>
+                    <div  *ngIf="!addedToCart[i]" class="add-to-cart" (click)="onClickAddCart(1,product,i)"><button >Add To Cart</button></div>
+                    <div  *ngIf="addedToCart[i]" class="added-to-cart" (click)="onClickRemoveCart(product,i)"><button >&check; Added To Cart</button></div>
                 </div>
-            </a>
+            
             
         </div>
         
@@ -28,19 +32,23 @@
         <button class="next" type="submit" appNextNew><img src="../../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
     </div>
     <div class="new-products-carousel">
-        <div *ngFor="let product of products|searchBar:typeSearch |productFilter:filterSideBarValue" class="product" >
-            <a routerLink="product" (click)="Onclickproduct(product)">
-                <div class="image">
+        <div *ngFor="let product of products|searchBar:typeSearch |productFilter:filterSideBarValue;index as i" class="product" >
+            <a routerLink="product" (click)="Onclickproduct(product,i)">
+                <div class="image" routerLink="product" (click)="Onclickproduct(product,i)">
                     <img src="../../../assets/images/{{product.filename}}" alt="product image" >
                 </div>
+            </a>
                 <div class="details">
-                    <div class="name">{{product.title | shorten:25}}</div>
+                    <a routerLink="product" (click)="Onclickproduct(product,i)">
+                        <div class="name">{{product.title | shorten:25}}</div>
+                    </a>
                     <div class="price">&#x20B9; {{product.price}}</div>
                     <div class="rating">{{product.rating}} &#9733;</div>
-                    <div class="add-to-cart"><button>Add To Cart</button></div>
+                    <div  *ngIf="!addedToCart[i]" class="add-to-cart" (click)="onClickAddCart(1,product,i)"><button >Add To Cart</button></div>
+                    <div  *ngIf="addedToCart[i]" class="added-to-cart" (click)="onClickRemoveCart(product,i)"><button >&check; Added To Cart</button></div>
 
                 </div>
-            </a>
+            
             
         </div>
         

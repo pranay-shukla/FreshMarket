@@ -20,11 +20,12 @@ export class ProductsDataService {
   
   static products: any;
   products:product[]=productData;
+  addToCart:any ={};
   searchVal = new BehaviorSubject(""); // for home-page filter
   typeSearch = new BehaviorSubject(""); // for product-type pages filter
- 
+  addedToCart = new BehaviorSubject(this.addToCart);// for showing added to cart or not wherever that item is shown
   productsCart:product[] =[];
-  countProd:number = 0 ;
+  countProd:number[] = [] ;
   productInfo = new BehaviorSubject({});
 
   filterSideBarValue = new BehaviorSubject({
@@ -55,7 +56,7 @@ export class ProductsDataService {
     this.filterSideBarValue.next(sidebarValue);
   }
 
-  productDetail(product:any){
+  productDetail(product:any,index:number){
     this.productInfo.next(product);
   }
   

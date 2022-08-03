@@ -53,8 +53,8 @@ export class ProductTypeComponent implements OnInit,OnDestroy {
       
     } )
   }
-  Onclickproduct(product:any){
-    this._ProductsDataService.productDetail(product);
+  Onclickproduct(product:any,index:number){
+    this._ProductsDataService.productDetail(product,index);
   }
   
 }

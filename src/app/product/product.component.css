@@ -125,7 +125,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 99%;
-    height: 16rem ;
+    height: 17rem ;
     margin-left: 2.5%;
     overflow: hidden;
     
@@ -213,7 +213,7 @@
 .similar-products-carousel{
     position: relative;
 }
-.add-to-cart button{
+.product-carousel .add-to-cart button{
     padding: 0 2%;
     text-transform: uppercase;
     color: rgba(254, 250, 250, 0.997);

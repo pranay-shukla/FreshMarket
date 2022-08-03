@@ -13,7 +13,7 @@ import { ProductsDataService } from 'src/app/services/products-data.service';
 export class CarouselComponent implements OnInit,OnDestroy {
   
   typeSearch =""; 
-  
+  addedToCart:any = {}
   filterSideBarValue= {}
   constructor(private _productDataService: ProductsDataService) {
     
@@ -35,6 +35,10 @@ export class CarouselComponent implements OnInit,OnDestroy {
       this.filterSideBarValue= res;     
       // console.log(this.filterSideBarValue)       
     });
+    this._productDataService.addedToCart.subscribe(res =>{
+      this.addedToCart = res;
+    })
+    
   }
 
 
@@ -58,13 +62,35 @@ export class CarouselComponent implements OnInit,OnDestroy {
       }
       
     } )
+    
    
   }
 
   
-  Onclickproduct(product:any){
-    this._productDataService.productDetail(product);
+  Onclickproduct(product:any,index:number){
+    this._productDataService.productDetail(product,index);
   }
+  
+  onClickAddCart(countValue:number,product :any,i:number){
+    
+    this._productDataService.productsCart.push(product);
+    
+    this._productDataService.countProd.push(countValue);
+ 
+    this._productDataService.addToCart[i] = !this._productDataService.addToCart[i];
+    this._productDataService.addedToCart.next(this._productDataService.addToCart);
+    
+    
+  }
+  onClickRemoveCart(product:any,i:any){
+    let index = this._productDataService.productsCart.findIndex(item => item.filename === product.filename);
+    this._productDataService.productsCart.splice(index,1);
+    this._productDataService.countProd.splice(index,1);
+    this._productDataService.addToCart[i] = !this._productDataService.addToCart[i];
+    this._productDataService.addedToCart.next(this._productDataService.addToCart);
+    
+  }
+  
 }
 
 
