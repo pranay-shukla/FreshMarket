@@ -10,11 +10,11 @@
             <div class="price">  &#x20B9;  {{product.price}}</div>
             
             <div class="button-area">
-            <div class="button-minus"><button> - </button></div>
-            <div class="count-input"><input type="" value={{countValue[i]}} ></div>
-            <div class="button-add"><button> + </button></div>
+            <div class="button-minus"><button (click)="subtractCounter(i)"> - </button></div>
+            <div class="count-input"><input #itemNumber type="" value={{countValue[i]}} ></div>
+            <div class="button-add"><button (click)="addCounter(i)"> + </button></div>
             </div>
-            <div class="remove"><button>Remove</button></div>
+            <div class="remove"><button (click)="onClickRemoveCart(product,i)">Remove</button></div>
             </div>
         </div>
         <div class="place-order"><button>Place Order</button></div>
@@ -22,16 +22,16 @@
     <div class="price-area">
         <div class="heading">Price Details :</div>
         <div class="price-calculated">Price ({{productsCart.length}} items) :
-            <div class="actual-price">  &#x20B9; 100 </div>
+            <div class="actual-price">  &#x20B9; {{calculatedPrice()}} </div>
          </div>
         <div class="discount">Discount :   
-            <div class="actual-price">  &#x20B9; 40</div>
+            <div class="actual-price">  &#x20B9; {{calculateDiscount()}}</div>
         </div>
         <div class="delivery-charges">Delivery charges :  
-            <div class="actual-price">  &#x20B9; 7</div>    
+            <div class="actual-price">  &#x20B9; {{CalculateDeliveryCharges()}}</div>    
         </div>
         <div class="total-amount">Total Amount :  
-            <div class="actual-price">  &#x20B9; 147 </div>    
+            <div class="actual-price">  &#x20B9; {{totalPrice()}} </div>    
         </div>
         <div class="place-order"><button>Place Order</button></div>
     </div>

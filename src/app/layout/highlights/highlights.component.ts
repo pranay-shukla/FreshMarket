@@ -13,7 +13,7 @@ export class HighlightsComponent implements OnInit {
     
   
   }
-
+  
   ngOnInit(): void {
     let script = this._renderer2.createElement('script');
         script.type = `text/javascript`;
@@ -21,9 +21,9 @@ export class HighlightsComponent implements OnInit {
         var counter = 1;
         setInterval(function(){
           
-          
-          
-          document.getElementById('r'+counter).checked = true;
+          domElement = document.getElementById('r'+counter);
+          if(domElement)
+          domElement.checked = true;
           
           counter++;
           if(counter > 3)
@@ -32,5 +32,9 @@ export class HighlightsComponent implements OnInit {
         `;
 
         this._renderer2.appendChild(this._document.body, script);
+
+  }
+  ngOnDestroy():void{
+    clearInterval()
   }
 }

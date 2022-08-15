@@ -14,13 +14,17 @@
                     <!-- <div>New</div> -->
                     <img src="../../assets/images/{{product.filename}}" alt="product image" >
                 </div>
+            </a>
                 <div class="details">
-                    <div class="name">{{product.title | shorten:18}}</div>
+                    <a routerLink="product" (click)="Onclickproduct(product,i)">
+                        <div class="name">{{product.title | shorten:18}}</div>
+                    </a>
                     <div class="price">&#x20B9; {{product.price}}</div>
                     <div class="rating">{{product.rating}} &#9733;</div>
-                    <div class="add-to-cart"><button>Add To Cart</button></div>
+                    <div  *ngIf="!addedToCart[i]" class="add-to-cart" (click)="onClickAddCart(1,product,i)"><button >Add To Cart</button></div>
+                    <div  *ngIf="addedToCart[i]" class="added-to-cart" (click)="onClickRemoveCart(product,i)"><button >&check; Added To Cart</button></div>
                 </div>
-            </a>
+            
         </div>
     </div>
 </div>

@@ -45,8 +45,8 @@
         <button class="prev" type="submit" appPrevProduct><img src="../../assets/left_arrow.jpg" alt="" width="14px" height="10px"></button>
         <button class="next" type="submit" appNextProduct><img src="../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
         <div class="product-carousel">
-            <div *ngFor="let product of frequentlyBoughtProducts" class="product" >
-                <a routerLink="product" (click)="Onclickproduct(product)">
+            <div *ngFor="let product of frequentlyBoughtProducts;index as i" class="product" >
+                <a routerLink="product" (click)="Onclickproduct(product,i)">
                     <div class="image">
                         <!-- <div>New</div> -->
                         <img src="../../assets/images/{{product.filename}}" alt="product image" >
@@ -67,8 +67,8 @@
         <button class="next" type="submit" appNextProduct><img src="../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
 
         <div class="product-carousel">
-            <div *ngFor="let product of similarProducts| searchBar:product.type" class="product" >
-                <a routerLink="product" (click)="Onclickproduct(product)">
+            <div *ngFor="let product of similarProducts| searchBar:product.type;index as i" class="product" >
+                <a routerLink="product" (click)="Onclickproduct(product,i)">
                     <div class="image">
                         <!-- <div>New</div> -->
                         <img src="../../assets/images/{{product.filename}}" alt="product image" >

@@ -1,0 +1,54 @@
+.register-form{
+    margin: 3% auto;
+    width: 30%;
+    height: 50vh;
+    padding: 0% 0% 6% 0%;
+    box-shadow: 4px 4px 8px 4px rgba(128, 128, 128, 0.315);
+    text-align: center;
+    /* background:url("../../../assets/green_background.jpeg"); */
+    background-size: 200%;
+    background-blend-mode: color;
+    object-fit: cover;
+    background-color: #fae49663;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    /* font-size: 1.5em; */
+    /* border: 2px solid grey;    */
+}
+h1{
+    padding: 4%;
+    font-size: 3em;
+    margin-bottom: 1em;
+    background-color: lavender;
+}
+input{
+    width: 60%;
+}
+button{
+    padding: 1% 10%;
+    margin-bottom: 5%;
+    font-size: 1.8em;
+    background-color: rgba(165, 42, 42, 0.676);
+    color: white;
+}
+
+.username,
+.email,
+.password,
+.phone{
+    font-size: 1.6em;
+    margin-bottom: 3%;
+}
+.email{
+    margin-left: 10%;
+}
+.phone{
+    margin-left: 3%;
+}
+.email input{
+    width: 65%
+}
+.create-user{
+    font-size: 1.5em;
+}
+

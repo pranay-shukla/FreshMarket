@@ -24,6 +24,13 @@ export class HeaderComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
     this._productDataService.searchVal.next("");
   }
+  cart(){
+    let value = this._productDataService.countProd.length;
+    if(value === 0)
+    return "Cart Empty"
+    else
+    return value + " "+"items"
+  }
 }
 
 

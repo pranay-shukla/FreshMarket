@@ -24,6 +24,7 @@ export class ProductsDataService {
   searchVal = new BehaviorSubject(""); // for home-page filter
   typeSearch = new BehaviorSubject(""); // for product-type pages filter
   addedToCart = new BehaviorSubject(this.addToCart);// for showing added to cart or not wherever that item is shown
+  
   productsCart:product[] =[];
   countProd:number[] = [] ;
   productInfo = new BehaviorSubject({});

@@ -4,14 +4,16 @@ import { AppRoutingModule } from '../app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
 import { AccountComponent } from './account/account.component';
-import {FormsModule} from '@angular/forms'
+import {FormsModule} from '@angular/forms';
+import { RegisterComponent } from './register/register.component'
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     ContactComponent,
-    AccountComponent
+    AccountComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,

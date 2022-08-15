@@ -1,9 +1,15 @@
-<form #loginForm="ngForm" (ngSubmit)="getData(loginForm.value)">
-    <input type="text" ngModel name="user" placeholder="Enter User Name">
+<form class="login-form" #loginForm="ngForm" (ngSubmit)="getData(loginForm.value)">
+    <h1>User Login</h1>
+    <div class="username">
+        <label for=""> USERNAME : </label>
+        <input type="text" ngModel name="user" placeholder="Enter User Name">
+    </div>
     <br><br>
-    <input type="email" ngModel name="email" placeholder="Enter User Email">
+    <div class="password">
+        <label for="">PASSWORD : </label>
+        <input type="password" ngModel name="password" placeholder="Enter User password">
+    </div>
     <br><br>
-    <input type="password" ngModel name="password" placeholder="Enter User password">
-    <br><br>
-    <button>Register</button>
+    <div class="login-button"><button>Login</button></div>
+   <div class="create-user"> Not registered as user click on  <a routerLink="/register">Create User</a> ..</div>
 </form>

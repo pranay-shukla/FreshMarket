@@ -28,7 +28,7 @@ export class ProductComponent implements OnInit,OnDestroy {
     
     this._productDataService.countProd.push(countValue);
  
-    this._productDataService.addToCart[i] = !this._productDataService.addToCart[i];
+    // this._productDataService.addToCart[i] = !this._productDataService.addToCart[i];
     this._productDataService.addedToCart.next(this._productDataService.addToCart);
     
   }

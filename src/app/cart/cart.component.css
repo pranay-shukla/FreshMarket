@@ -108,9 +108,14 @@
     right: 32%;
 
 }
+.remove button{
+    background-color: rgba(0, 255, 255, 0.229);
+    padding: 10%;
+}
 .place-order{
     height: 8vh;
     position: sticky;
+    
 }
 .place-order button{
     width: 20vw;
@@ -119,7 +124,6 @@
     color: rgb(242, 255, 246);
     background-color: rgb(37, 185, 37);
     font-size: 3em;
-    
     float: right;
 }
 

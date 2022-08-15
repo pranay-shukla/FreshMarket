@@ -14,10 +14,11 @@ import { ContactComponent } from './user/contact/contact.component';
 import { LoginComponent } from './user/login/login.component';
 import { VeganComponent } from './vegan/vegan.component';
 import { VeggiesComponent } from './veggies/veggies.component';
+import { RegisterComponent } from './user/register/register.component';
 
 const routes: Routes = [
   {
-    path:'',redirectTo:'home',pathMatch:'full'
+    path:'',redirectTo:'login',pathMatch:'full'
   },
   { path:'home', children : [
     {path:'',component: HomeComponent},
@@ -85,6 +86,9 @@ const routes: Routes = [
       {path:"",component:VeggiesComponent},
       {path:"product",component:ProductComponent}
     ]
+  },{
+    path: 'register',
+    component: RegisterComponent
   }
   
   

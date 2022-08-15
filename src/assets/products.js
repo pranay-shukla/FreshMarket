@@ -6,7 +6,8 @@ const productsDataAll = [{
   "height": 600,
   "width": 400,
   "price": 28.1,
-  "rating": 4
+  "rating": 4,
+  "brand": "amul"
 }, {
   "title": "Sweet fresh stawberry",
   "type": "fruit",

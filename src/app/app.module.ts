@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { ProductsDataService } from './services/products-data.service';
 import { AppPipeModule } from './app-pipe/app-pipe.module';
 import { ProductTypeComponent } from './product-type/product-type.component';
 import { AppDirectivesModule } from './app-directives/app-directives.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -50,7 +52,9 @@ import { AppDirectivesModule } from './app-directives/app-directives.module';
     LayoutModule,
     UserModule,
     AppPipeModule,
-    AppDirectivesModule
+    AppDirectivesModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   exports:[
     

@@ -1,0 +1,27 @@
+<form class="register-form" #registerForm="ngForm" (ngSubmit)="getData(registerForm.value)">
+    <h1>Register User</h1>
+    <div class="username">
+        <label for=""> USERNAME : </label>
+        <input type="text" ngModel name="username" placeholder="Enter User Name">
+    </div>
+    <br><br>
+    <div class="email">
+        <label for="">  EMAIL : </label>
+        <input type="email" ngModel name="email" placeholder="Enter User Email">
+    </div>
+    <br><br>
+    <div class="phone">
+        <label for="">  Mobile No. : </label>
+        <input type="text" ngModel name="phone" placeholder="Enter User Mobile No.">
+    </div>
+    <br><br>
+    <div class="password">
+        <label for="">PASSWORD : </label>
+        <input type="password" ngModel name="password" placeholder="Enter User password">
+    </div>
+    <br><br>
+    <div class="register-button"><button>Register</button></div>
+   <div class="create-user"> Already registered as user, click on  <a routerLink="/login">Login</a> ..</div>
+</form>
+
+
