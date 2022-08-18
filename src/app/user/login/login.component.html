@@ -1,13 +1,13 @@
-<form class="login-form" #loginForm="ngForm" (ngSubmit)="getData(loginForm.value)">
+<form class="login-form" #loginForm="ngForm" ngNativeValidate (ngSubmit)="getData(loginForm.value)">
     <h1>User Login</h1>
     <div class="username">
-        <label for=""> USERNAME : </label>
-        <input type="text" ngModel name="user" placeholder="Enter User Name">
+        <label for=""> EMAIL : </label>
+        <input required type="text" ngModel name="email" placeholder="Enter User Name">
     </div>
     <br><br>
     <div class="password">
         <label for="">PASSWORD : </label>
-        <input type="password" ngModel name="password" placeholder="Enter User password">
+        <input required type="password" ngModel name="password" placeholder="Enter User password">
     </div>
     <br><br>
     <div class="login-button"><button>Login</button></div>

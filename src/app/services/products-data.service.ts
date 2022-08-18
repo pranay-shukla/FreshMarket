@@ -29,6 +29,10 @@ export class ProductsDataService {
   countProd:number[] = [] ;
   productInfo = new BehaviorSubject({});
 
+
+  username = new BehaviorSubject(""); // to display the nae of user in the nav bar
+  login = new BehaviorSubject(true);
+
   filterSideBarValue = new BehaviorSubject({
     "fruit" : true,
     "vegetable" : true,

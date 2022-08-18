@@ -112,22 +112,32 @@ width: 97%;
     text-align: center;
     color: #666669;
 } 
+.username{
+    color: #666669;
+    font-weight: 700;
+}
 .nav3  .right-nav ul li a{
     padding: 0.5em;
     color: #666669;
     text-align: center;
     margin-left: 0.5em;
+    margin-right: 0.5em;
     position: relative;
     
     
 }
+
 .nav3  .left-nav ul li a img, 
 .nav3  .right-nav ul li a img{
     position: absolute;
     transform: translate(-110%,0%);
     
+    
 }
 
+.logout{
+    cursor : pointer;
+}
 .active{
     background-color: #6666692f;
     

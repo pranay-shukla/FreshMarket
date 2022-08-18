@@ -50,7 +50,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
-    UserModule,
     AppPipeModule,
     AppDirectivesModule,
     HttpClientModule,
