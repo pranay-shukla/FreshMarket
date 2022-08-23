@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import { AppPipeModule } from '../app-pipe/app-pipe.module';
 import { AppDirectivesModule } from '../app-directives/app-directives.module';
+import{CookieService}from 'ngx-cookie-service'
 
 
 
@@ -40,6 +41,9 @@ import { AppDirectivesModule } from '../app-directives/app-directives.module';
     SidebarComponent,
     CarouselComponent,
     FooterComponent
+  ],
+  providers:[
+    CookieService
   ]
 })
 export class LayoutModule { 

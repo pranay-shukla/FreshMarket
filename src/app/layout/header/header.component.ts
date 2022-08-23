@@ -3,6 +3,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductsDataService } from 'src/app/services/products-data.service';
+import {CookieService} from 'ngx-cookie-service'
+
 
 @Component({
   selector: 'app-header',
@@ -19,7 +21,8 @@ export class HeaderComponent implements OnInit,OnDestroy {
 
 
 
-  constructor(private _productDataService:ProductsDataService, private htto : HttpClient, private router : Router) { }
+  constructor(private _productDataService:ProductsDataService, private htto : HttpClient, private router : Router,
+    private cookie : CookieService) { }
   
   ngOnInit(): void {
     this._productDataService.username.subscribe(res=>{
@@ -54,9 +57,13 @@ export class HeaderComponent implements OnInit,OnDestroy {
       this.htto.get<any>("http://localhost:3000/users/logout")
     .subscribe(res=>{
       alert('Logout Successfull')
-      this._productDataService.login.next(!this._productDataService.login)
+      localStorage.removeItem('jwt');
+      
+      this._productDataService.login.next(true)
+      
       this.router.navigate(['login']);
     },err=>{
+      console.log(err)
       alert(err.error.message)
     })
     }

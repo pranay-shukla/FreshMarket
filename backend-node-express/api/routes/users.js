@@ -6,7 +6,8 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const auth = require('../middleware/check-auth')
 
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+
 const cookie = express();
 cookie.use(cookieParser())
 
@@ -44,7 +45,20 @@ router.post('/signup',(req,res,next)=>{
                         userType : req.body.userType
                     })
                     
-                    user.save()
+                    user.save(
+                        // (err,doc)=>{
+                    //     if(!err)
+                    //     {
+                    //         res.status(200).json({
+                    //             new_user : doc
+                    //         })   
+                    //     }
+                    //     else
+                    //     {
+                    //         console.log(err)
+                    //     }
+                    // }
+                    )
                     .then(result=>{
                         
                         res.status(200).json({
@@ -52,6 +66,11 @@ router.post('/signup',(req,res,next)=>{
                         })
                     })
                     .catch(err=>{
+                        // if(err.code ==11000){
+                        //     res.status(422).send('Duplicate Email address found.')
+                        // }
+                        // else
+                        // return next(err);
                         
                         res.status(500).json({
                             
@@ -68,6 +87,7 @@ router.post('/signup',(req,res,next)=>{
 // for user sign in
 
 router.post('/login',(req,res,next)=>{
+    
     User.find({email : req.body.email})
     .exec()
     .then(user =>{
@@ -88,14 +108,14 @@ router.post('/login',(req,res,next)=>{
             if(result)
             {
                 const token = user[0].generateAuthToken();
-                console.log(token)
-                res.cookie('jwt',token,{
-                    expires:new Date(Date.now() + 500000),
-                    httpOnly: true,
-                    // secure:true
+                // console.log(token)
+                // res.cookie('jwt',token,{
+                //     expires:new Date(Date.now() + (5000000)),
+                //     httpOnly: true
+                //     // secure:true
                     
-                })
-                console.log(req.cookies.jwt)
+                // })
+                // console.log(req.cookies.jwt)
                 user[0].save()
                 // const token = jwt.sign({
                 //     username : user[0].username,
@@ -114,6 +134,7 @@ router.post('/login',(req,res,next)=>{
                     email : user[0].email,
                     phone : user[0].phone,
                     token : token,
+                    
                     message : 'Login Successful'
                 })
             }
@@ -130,15 +151,39 @@ router.post('/login',(req,res,next)=>{
 // to logout from the user account
 
 router.get('/logout',auth,(req,res,next)=>{
-    try{
-        res.clearCookie('jwt')
-        console.log('logout successfull')
-    }
-    catch(error){
-        return res.status(500).json({
-            message : error
-        })
-    }
+    const token = req.headers.authorization.split(' ')[1];
+    const verify = jwt.verify(token,"this is dummy text");
+    
+    // User.find({_id : verify._id})
+    // .exec()
+    // .then(user =>{
+    //     user[0].tokens.findIndex({token : token})
+    //     .then(userTokenIndex=>{
+    //         user[0].tokens.splice(userTokenIndex,1);
+    //         user[0].save();
+    //     })
+    //     .catch(err=>{
+    //         console.log(err)
+    //         res.status(500).json({
+    //             error : err
+    //         })
+    //     })
+        
+    //     user[0].save();
+    //     console.log(user[0]);
+    // })
+    // .catch(err=>{
+    //     console.log(err)
+    //     res.status(500).json({
+    //         error : err
+    //     })
+    // })
+
+       
+       res.status(200).json({
+        message:'logout successfull'
+       })
+    
 })
 
 module.exports = router

@@ -5,7 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
 import { AccountComponent } from './account/account.component';
 import {FormsModule} from '@angular/forms';
-import { RegisterComponent } from './register/register.component'
+import { RegisterComponent } from './register/register.component';
+import {CookieService} from 'ngx-cookie-service'
 
 
 @NgModule({
@@ -24,6 +25,9 @@ import { RegisterComponent } from './register/register.component'
     LoginComponent,
     ContactComponent,
     AccountComponent
+  ],
+  providers:[
+    CookieService
   ]
 })
 export class UserModule { }

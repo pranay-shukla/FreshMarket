@@ -1,4 +1,4 @@
-<form class="register-form" #registerForm="ngForm"  ngNativeValidate (ngSubmit)="getData(registerForm.value)">
+<form class="register-form" #registerForm="ngForm"  ngNativeValidate (ngSubmit)="registerForm.valid && getData(registerForm.value)">
     <h1>Register User</h1>
     <div class="username">
         <label for=""> USERNAME : </label>

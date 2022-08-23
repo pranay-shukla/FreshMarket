@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['login'])
     },err=>{
       const error = [Object.entries(err.error.message.keyValue)]
-     
+    //  console.log(err.)
       const key = error[0][0][0];
       const value = error[0][0][1];
       if(key ==='email')

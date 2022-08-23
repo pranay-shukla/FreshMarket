@@ -4,21 +4,24 @@ const userSchema = new  mongoose.Schema({
     _id : mongoose.Schema.Types.ObjectId,
     username : {
         type : String,
-        required : true,
+        required : "Username can't be empty",
         
     },
     email : {
         type : String,
-        required : true,
+        required : "Email can't be empty",
         unique : true
     },
     password : {
         type : String,
-        required : true
+        required : "Password can't be empty",
+        minlength: [4,"Password must be atleast 4 characters long"]
     },
     phone : {
         type : Number,
-        required : true,
+        required : "Mobile Number can't be empty",
+        minlength: [10,"Mobile Number must be atleast 10 characters long"],
+
         unique : true
         
     },
@@ -28,8 +31,20 @@ const userSchema = new  mongoose.Schema({
             type : String,
             required : true
         }
+    }],
+    cartProducts : [{
+        cartProduct:{
+            type : String
+        }
     }]
 })
+
+// email validation
+userSchema.path('email').validate(val=>{
+    emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+    return emailRegex.test(val);
+
+},'Invalid Email..')
 
 // generating tokens
 userSchema.methods.generateAuthToken = function(){
@@ -45,6 +60,12 @@ userSchema.methods.generateAuthToken = function(){
         })
     }
 }
+
+// user methods
+userSchema.methods.verifyPassword = function(password){
+    return bcrypt.compareSync(password, this.password)
+}
+
 
 // userSchema.plugin(uniqueValidator, {message : 'username already in use'})
 

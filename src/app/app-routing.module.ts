@@ -15,6 +15,7 @@ import { LoginComponent } from './user/login/login.component';
 import { VeganComponent } from './vegan/vegan.component';
 import { VeggiesComponent } from './veggies/veggies.component';
 import { RegisterComponent } from './user/register/register.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -44,14 +45,16 @@ const routes: Routes = [
     ]    
   },
   {
-    path: 'bookmark', children:[
-      {path:"",component:BookmarkComponent},
-      {path:"product",component:ProductComponent}
-    ]
+    path: 'bookmark',
+      component:BookmarkComponent,
+      canActivate:[AuthGuard]
+      
+    
   },
   {
     path: 'cart',
-    component: CartComponent
+    component: CartComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'dairy-products', children:[

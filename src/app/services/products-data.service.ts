@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import productData from '../../assets/products.json'
+// import productData from '../../assets/products.json'
 
 interface product{
+  "id" : String,
   "title": String,
   "type": String,
   "description": String,
@@ -19,7 +21,8 @@ interface product{
 export class ProductsDataService {
   
   static products: any;
-  products:product[]=productData;
+  products:product[]=[];
+  productsData:any = {}
   addToCart:any ={};
   searchVal = new BehaviorSubject(""); // for home-page filter
   typeSearch = new BehaviorSubject(""); // for product-type pages filter
@@ -53,10 +56,21 @@ export class ProductsDataService {
     
   }); // for side-bar filter
   
-  constructor() { 
+  constructor(private http : HttpClient) { 
+
+    this.http.get('http://localhost:3000/products')
+    .subscribe(res=>{
+      
+      this.productsData = res;
+      this.products = this.productsData.productsData
+      
+    },err=>{
+      alert(err.error.message)
+    })
     
+
+    }
     
-  }
   filteredValue(sidebarValue : any){
     this.filterSideBarValue.next(sidebarValue);
   }

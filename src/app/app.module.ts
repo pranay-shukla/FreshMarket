@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +23,9 @@ import { AppPipeModule } from './app-pipe/app-pipe.module';
 import { ProductTypeComponent } from './product-type/product-type.component';
 import { AppDirectivesModule } from './app-directives/app-directives.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import {CookieService} from 'ngx-cookie-service'
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 
 
@@ -58,7 +61,15 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports:[
     
   ],
-  providers: [ProductsDataService],
+  providers: [ProductsDataService,
+    CookieService,
+    AuthGuard,
+   { 
+    provide : HTTP_INTERCEPTORS,
+    useClass : TokenInterceptorService,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
 

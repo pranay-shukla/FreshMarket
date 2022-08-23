@@ -1,3 +1,4 @@
+// require('./config/passportConfig')
 const express = require('express');
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
@@ -9,6 +10,7 @@ const app = express();
 
 const usersRoute = require('./api/routes/users')
 const productsRoute = require('./api/routes/products')
+const cartRoute = require('./api/routes/cart')
 
 const auth = require('./api/middleware/check-auth')
 
@@ -17,7 +19,7 @@ const auth = require('./api/middleware/check-auth')
 
 
 const cors = require('cors')
-
+// const passport  = require('passport')
 
 const mongoose = require('mongoose')
 
@@ -46,8 +48,10 @@ app.use(cors())
 
 app.use(cookieParser());
 app.use(express.json());
+
 app.use(express.urlencoded({extended : false}));
 
+// app.use(passport.initialze())
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
@@ -70,12 +74,20 @@ app.use(bodyParser.json());
 
 
 
-
+app.use('/cart',cartRoute)
 app.use('/products',productsRoute)
 app.use('/users',usersRoute)
 
-
-app.use((req,res,next)=>{
+//error handler
+app.use((err,req,res,next)=>{
+    if(err.name ==='validationError'){
+        var valErrors = [];
+        Object.keys(err.errors).forEach(key=>{
+            valErrors.push(err.errors[key].message)
+            
+        })
+        res.status(422).send(valErrors)
+    }
     res.status(404).json({
         error : 'url not found'
     })

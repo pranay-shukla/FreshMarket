@@ -1,7 +1,9 @@
 
+import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { ProductsDataService } from 'src/app/services/products-data.service';
+import{CookieService} from 'ngx-cookie-service'
 
 
 
@@ -15,7 +17,9 @@ export class CarouselComponent implements OnInit,OnDestroy {
   typeSearch =""; 
   addedToCart:any = {}
   filterSideBarValue= {}
-  constructor(private _productDataService: ProductsDataService) {
+  constructor(private _productDataService: ProductsDataService, private http : HttpClient,
+    private cookie : CookieService
+    ) {
     
     
     
@@ -72,6 +76,16 @@ export class CarouselComponent implements OnInit,OnDestroy {
   }
   
   onClickAddCart(countValue:number,product :any,i:number){
+
+    const userToken =localStorage.getItem('jwt')
+    // const userToken = this.cookie.get('jwt')
+    // console.log(product._id)
+    this.http.post<any>('http://localhost:3000/cart/add',{productId : product._id,userToken : userToken})
+    .subscribe(res=>{
+      console.log(res)
+    },err=>{
+      console.log(err)
+    })
     
     this._productDataService.productsCart.push(product);
     
