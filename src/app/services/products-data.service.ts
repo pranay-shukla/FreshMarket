@@ -156,6 +156,7 @@ loggedIn(){
     this.login = res.loggedIn;
     this.username = res.username;
     this.addProductToCart();
+    this.router.navigate(['home']);
     
   },err=>{
     console.log(err)
