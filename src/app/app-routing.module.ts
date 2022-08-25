@@ -18,9 +18,9 @@ import { RegisterComponent } from './user/register/register.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  {
-    path:'',redirectTo:'login',pathMatch:'full'
-  },
+  // {
+  //   path:'',redirectTo:'login',pathMatch:'full'
+  // },
   { path:'home', children : [
     {path:'',component: HomeComponent},
     {path:'product',component: ProductComponent}

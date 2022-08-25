@@ -165,6 +165,7 @@ loggedIn(){
   else{
     this.login = true;
     this.username = "Guest"
+    this.router.navigate(['login']);
   }
 }
 
