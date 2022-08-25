@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ProductsDataService } from '../services/products-data.service';
@@ -11,7 +12,7 @@ import { ProductsDataService } from '../services/products-data.service';
 export class ProductTypeComponent implements OnInit,OnDestroy {
   subscribe = Subscription;
   typeSearch = "";
-  constructor(private _ProductsDataService:ProductsDataService,) {
+  constructor(private _ProductsDataService:ProductsDataService,private http : HttpClient) {
     // for product page search type 
     this._ProductsDataService.typeSearch.subscribe(res =>{
       this.typeSearch = res;
@@ -19,7 +20,9 @@ export class ProductTypeComponent implements OnInit,OnDestroy {
     })
    }
   
-  products = this._ProductsDataService.products; 
+  products(){
+    return this._ProductsDataService.products; 
+  } 
  
   addedToCart:any = {}
   
@@ -28,9 +31,10 @@ export class ProductTypeComponent implements OnInit,OnDestroy {
     this._ProductsDataService.filterSideBarValue.subscribe(res =>{
       this.filterSideBarValue = res;
       });
-      this._ProductsDataService.addedToCart.subscribe(res =>{
-        this.addedToCart = res;
-      })
+      
+      // this._ProductsDataService.addedToCart.subscribe(res =>{
+      //   this.addedToCart = res;
+      // })
       // this._ProductsDataService.filteredProduct.subscribe(res =>{
       //   this.products = res;
       //   })
@@ -61,23 +65,10 @@ export class ProductTypeComponent implements OnInit,OnDestroy {
   Onclickproduct(product:any,index:number){
     this._ProductsDataService.productDetail(product,index);
   }
-  onClickAddCart(countValue:number,product :any,i:number){
-    
-    this._ProductsDataService.productsCart.push(product);
-    
-    this._ProductsDataService.countProd.push(countValue);
- 
-    this._ProductsDataService.addToCart[i] = !this._ProductsDataService.addToCart[i];
-    this._ProductsDataService.addedToCart.next(this._ProductsDataService.addToCart);
-    
-    
+  onClickAddCart(countValue:number,product :any){
+
+    return this._ProductsDataService.onClickAddCart(countValue,product)
+  
   }
-  onClickRemoveCart(product:any,i:any){
-    let index = this._ProductsDataService.productsCart.findIndex(item => item.filename === product.filename);
-    this._ProductsDataService.productsCart.splice(index,1);
-    this._ProductsDataService.countProd.splice(index,1);
-    this._ProductsDataService.addToCart[i] = !this._ProductsDataService.addToCart[i];
-    this._ProductsDataService.addedToCart.next(this._ProductsDataService.addToCart);
-    
-  }
+  
 }

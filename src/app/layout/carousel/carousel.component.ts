@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { ProductsDataService } from 'src/app/services/products-data.service';
-import{CookieService} from 'ngx-cookie-service'
+import{CookieService} from 'ngx-cookie-service';
+import { AuthService } from 'src/app/auth.service';
 
 
 
@@ -15,17 +16,25 @@ import{CookieService} from 'ngx-cookie-service'
 export class CarouselComponent implements OnInit,OnDestroy {
   
   typeSearch =""; 
-  addedToCart:any = {}
+  
   filterSideBarValue= {}
   constructor(private _productDataService: ProductsDataService, private http : HttpClient,
-    private cookie : CookieService
+    private cookie : CookieService,private _auth : AuthService
     ) {
     
-    
+      if(this._auth.loggedIn())
+      {
+        
+        this._productDataService.addProductToCart();
+        
+        
+      }
     
    }
    
-  products = this._productDataService.products;
+  products(){
+    return this._productDataService.products;
+  }
    
   
   
@@ -39,9 +48,7 @@ export class CarouselComponent implements OnInit,OnDestroy {
       this.filterSideBarValue= res;     
       // console.log(this.filterSideBarValue)       
     });
-    this._productDataService.addedToCart.subscribe(res =>{
-      this.addedToCart = res;
-    })
+   
     
   }
 
@@ -75,35 +82,11 @@ export class CarouselComponent implements OnInit,OnDestroy {
     this._productDataService.productDetail(product,index);
   }
   
-  onClickAddCart(countValue:number,product :any,i:number){
+  onClickAddCart(countValue:number,product :any){
+    // this._productDataService.addProductToCart();
+    return this._productDataService.onClickAddCart(countValue,product);
+  }
 
-    const userToken =localStorage.getItem('jwt')
-    // const userToken = this.cookie.get('jwt')
-    // console.log(product._id)
-    this.http.post<any>('http://localhost:3000/cart/add',{productId : product._id,userToken : userToken})
-    .subscribe(res=>{
-      console.log(res)
-    },err=>{
-      console.log(err)
-    })
-    
-    this._productDataService.productsCart.push(product);
-    
-    this._productDataService.countProd.push(countValue);
- 
-    this._productDataService.addToCart[i] = !this._productDataService.addToCart[i];
-    this._productDataService.addedToCart.next(this._productDataService.addToCart);
-    
-    
-  }
-  onClickRemoveCart(product:any,i:any){
-    let index = this._productDataService.productsCart.findIndex(item => item.filename === product.filename);
-    this._productDataService.productsCart.splice(index,1);
-    this._productDataService.countProd.splice(index,1);
-    this._productDataService.addToCart[i] = !this._productDataService.addToCart[i];
-    this._productDataService.addedToCart.next(this._productDataService.addToCart);
-    
-  }
   
 }
 

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { __values } from 'tslib';
 import { ProductsDataService } from '../services/products-data.service';
@@ -10,51 +11,69 @@ import { ProductsDataService } from '../services/products-data.service';
 export class CartComponent implements OnInit {
   
 
-  constructor(private _productDataService : ProductsDataService) { }
-  productsCart = this._productDataService.productsCart;
-  countValue = this._productDataService.countProd; 
+  constructor(private _productDataService : ProductsDataService, private http: HttpClient) { 
+    this._productDataService.addProductToCart();
+  }
+  // productsCart = this._productDataService.productsCart;
+  // countValue = this._productDataService.countProd;
    price = this.calculatedPrice();
    discount = this.calculateDiscount();
    deliveryCharges = this.CalculateDeliveryCharges();
 
   ngOnInit(): void {
-    // this._productDataService.priceCalculated.subscribe(res => 
-    //   {this.priceCalculated = res})
-    // this._productDataService.discount.subscribe(res => 
-    //     {this.discount = res})
-    // this._productDataService.deliveryCharges.subscribe(res => 
-    //       {this.deliveryCharges = res})
+
+    // this.productsCart = this._productDataService.productsCart;
+    // this.countValue = this._productDataService.countProd;
+  
+    
+ 
     
   }
-  onClickRemoveCart(product:any,i:any){
-    let index = this._productDataService.productsCart.findIndex(item => item.filename === product.filename);
-    this._productDataService.productsCart.splice(index,1);
-    this._productDataService.countProd.splice(index,1);
-    this._productDataService.addToCart[i] = !this._productDataService.addToCart[i];
-    this._productDataService.addedToCart.next(this._productDataService.addToCart);
+  onClickRemoveCart(product:any){
+    const userToken =localStorage.getItem('jwt')
+   
     
+    this.http.post<any>('http://localhost:3000/cart/remove',{productId : product._id,userToken : userToken})
+    .subscribe(res=>{
+      
+      this._productDataService.addProductToCart();
+      alert(res.message)
+    },err=>{
+      alert(err.error)
+    })
+  
   }
-  addCounter( i : number)
+  
+  addCounter( i : number, product : any)
   {
-    if(this.countValue[i]<10)
-    this.countValue[i]++;
+    if(this._productDataService.countProd[i]<10)
+    {
+      this._productDataService.updateCount(this._productDataService.countProd[i]+1,product);
+      // this._productDataService.countProd[i]++;
+
+    }
+    
     else{
       alert("Number Of each item can not be Greater than 10!!")
     }
   }
-  subtractCounter( i : number)
+  subtractCounter( i : number, product : any)
   {
-    if(this.countValue[i]>1)
-      this.countValue[i]--;
-      else{
+    if(this._productDataService.countProd[i]>1)
+    {
+      this._productDataService.updateCount(this._productDataService.countProd[i]-1,product);
+      // this._productDataService.countProd[i]--;
+
+    }
+    else{
         alert("Number Of each item can not be Less than 1 in cart if you want to remove Please click on remove!!")
       }
   }
   calculatedPrice()
   {
     let price = 0
-    for(let i = 0;i<this.productsCart.length ;i++){
-      price +=this.productsCart[i].price * this.countValue[i];
+    for(let i = 0;i<this._productDataService.productsCart.length ;i++){
+      price +=this._productDataService.productsCart[i].price * this._productDataService.countProd[i];
     }
     price = Number((price).toFixed(2));
     // this.priceCalculated = parseInt(this._productDataService.priceCalculated.next(price));
@@ -68,7 +87,7 @@ export class CartComponent implements OnInit {
   }
   CalculateDeliveryCharges(){
     let value = 0;
-    if(this.calculatedPrice() >= 500 || this.productsCart.length === 0)
+    if(this.calculatedPrice() >= 500 || this._productDataService.productsCart.length === 0)
     value =  0;
     else 
     value = 40;
@@ -80,6 +99,12 @@ export class CartComponent implements OnInit {
   {
     
     return (this.calculatedPrice()-this.calculateDiscount()+this.CalculateDeliveryCharges()).toFixed(2);
+  }
+  productsCart(){
+    return this._productDataService.productsCart;
+  }
+  countValue(){
+    return this._productDataService.countProd;
   }
  
 }

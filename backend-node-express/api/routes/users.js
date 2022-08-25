@@ -45,20 +45,8 @@ router.post('/signup',(req,res,next)=>{
                         userType : req.body.userType
                     })
                     
-                    user.save(
-                        // (err,doc)=>{
-                    //     if(!err)
-                    //     {
-                    //         res.status(200).json({
-                    //             new_user : doc
-                    //         })   
-                    //     }
-                    //     else
-                    //     {
-                    //         console.log(err)
-                    //     }
-                    // }
-                    )
+                    user.save()
+                    
                     .then(result=>{
                         
                         res.status(200).json({
@@ -109,25 +97,7 @@ router.post('/login',(req,res,next)=>{
             {
                 const token = user[0].generateAuthToken();
                 // console.log(token)
-                // res.cookie('jwt',token,{
-                //     expires:new Date(Date.now() + (5000000)),
-                //     httpOnly: true
-                //     // secure:true
-                    
-                // })
-                // console.log(req.cookies.jwt)
-                user[0].save()
-                // const token = jwt.sign({
-                //     username : user[0].username,
-                //     userType : user[0].userType,
-                //     email : user[0].email,
-                //     phone : user[0].phone
-                // },'this is dummy text',{
-                //     expiresIn : '24h'
-                // })
-                
-                
-                // console.log(cookie)
+                user[0].save();
                 res.status(200).json({
                     username : user[0].username,
                     userType : user[0].userType,
@@ -154,30 +124,29 @@ router.get('/logout',auth,(req,res,next)=>{
     const token = req.headers.authorization.split(' ')[1];
     const verify = jwt.verify(token,"this is dummy text");
     
-    // User.find({_id : verify._id})
-    // .exec()
-    // .then(user =>{
-    //     user[0].tokens.findIndex({token : token})
-    //     .then(userTokenIndex=>{
-    //         user[0].tokens.splice(userTokenIndex,1);
-    //         user[0].save();
-    //     })
-    //     .catch(err=>{
-    //         console.log(err)
-    //         res.status(500).json({
-    //             error : err
-    //         })
-    //     })
+    User.find({_id : verify._id})
+    .exec()
+    .then(user =>{
         
-    //     user[0].save();
-    //     console.log(user[0]);
-    // })
-    // .catch(err=>{
-    //     console.log(err)
-    //     res.status(500).json({
-    //         error : err
-    //     })
-    // })
+        const tokens = user[0].tokens
+        
+        
+        const index = tokens.findIndex(object =>{return object.token = token});
+        
+        
+    
+        user[0].tokens.splice(index,1);
+   
+        
+        user[0].save();
+        
+    })
+    .catch(err=>{
+        console.log(err)
+        res.status(500).json({
+            error : err
+        })
+    })
 
        
        res.status(200).json({
@@ -185,5 +154,29 @@ router.get('/logout',auth,(req,res,next)=>{
        })
     
 })
+
+//for logged in or not
+router.post('/loggedIn',(req,res,next)=>{
+    
+    const verify = jwt.verify(req.body.userToken,process.env.SECRET_KEY);
+    
+    User.find({_id : verify._id})
+    .exec()
+    .then(async (user) =>{
+        
+        if(user[0] && user[0]._id == verify._id)
+        {
+           
+            return res.status(200).json({
+                username : user[0].username,
+                loggedIn : false
+            })
+        }
+        
+
+        
+    })
+})
+
 
 module.exports = router

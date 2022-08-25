@@ -1,7 +1,7 @@
 <div class="cart">
     <div class="products-area">
         <div class="heading">Your Items :</div>
-        <div class="products" *ngFor="let product of productsCart;index as i">
+        <div class="products" *ngFor="let product of productsCart();index as i">
             <div class="image"><img src="../../assets/images/{{product.filename}}" alt=""></div>
             <div class="product-details">
             <div class="title">{{product.title}}</div>
@@ -10,18 +10,18 @@
             <div class="price">  &#x20B9;  {{product.price}}</div>
             
             <div class="button-area">
-            <div class="button-minus"><button (click)="subtractCounter(i)"> - </button></div>
-            <div class="count-input"><input #itemNumber type="" value={{countValue[i]}} ></div>
-            <div class="button-add"><button (click)="addCounter(i)"> + </button></div>
+            <div class="button-minus"><button (click)="subtractCounter(i,product)"> - </button></div>
+            <div class="count-input"><input #itemNumber type="" value={{countValue()[i]}} ></div>
+            <div class="button-add"><button (click)="addCounter(i,product)"> + </button></div>
             </div>
-            <div class="remove"><button (click)="onClickRemoveCart(product,i)">Remove</button></div>
+            <div class="remove"><button (click)="onClickRemoveCart(product)">Remove</button></div>
             </div>
         </div>
         <div class="place-order"><button>Place Order</button></div>
     </div>
     <div class="price-area">
         <div class="heading">Price Details :</div>
-        <div class="price-calculated">Price ({{productsCart.length}} items) :
+        <div class="price-calculated">Price ({{productsCart().length}} items) :
             <div class="actual-price">  &#x20B9; {{calculatedPrice()}} </div>
          </div>
         <div class="discount">Discount :   

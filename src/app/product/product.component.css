@@ -56,7 +56,7 @@
     box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.413);
 
 }
-.add-to-cart{
+.product-area .add-to-cart{
     width: 40%;
     height: 45px;
     font-size: 1.8em;
@@ -119,7 +119,6 @@
     border: 1px solid rgba(128, 128, 128, 0.276);
 
 }
-
 .product-carousel
 {
     display: flex;
@@ -131,11 +130,11 @@
     
     
 }
+
+
 .product{
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    flex-wrap:wrap;
+   
     width: 13vw;
     height: 16rem;
     text-align: center;
@@ -143,7 +142,6 @@
     margin-top: 1%;
     border: 2px solid rgba(128, 128, 128, 0.335);
     box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.315);
-    
 }
 .product::-webkit-scrollbar{
     display: none;
@@ -173,6 +171,8 @@
     max-height: 1.2em;
     font-weight: 800;
     text-overflow: clip;
+    color: #5a585a;
+    
 }
 .product .details{
     margin-top: 0.5em;
@@ -192,6 +192,7 @@
     font-size: 1.15em;
 }
 
+
 .prev{
     position: absolute;
     top:3%;
@@ -209,13 +210,35 @@
 .next:hover img{
     opacity: 2;
 }
+.main-area{
+    display: flex;
+    /* margin-top: 1%; */
+    
+}
+.main-area app-sidebar{
+    padding-left: 0.5%;
+    width: 16%;
+    border-left: 2px solid rgba(128, 128, 128, 0.363);
+    /* box-shadow: 2px 2px 2px grey; */
+    margin-top: 1%;
+    margin-right: 4px;
+}
+
+.main-area .carousel{
+    
+    width: 90%;
+    margin-left: 0.5%;
+}
+
+
 .frequently-bought-carousel,
 .similar-products-carousel{
     position: relative;
 }
 .product-carousel .add-to-cart button{
+    /* width: 11rem; */
     padding: 0 2%;
     text-transform: uppercase;
     color: rgba(254, 250, 250, 0.997);
-    background-color:#8bc731;
+    background-color:rgba(128, 128, 128, 0.722);
 }

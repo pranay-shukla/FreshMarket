@@ -24,13 +24,10 @@ export class ProductComponent implements OnInit,OnDestroy {
     this._productDataService.productDetail(product,index);
   }
   onClickCart(countValue:any,product :any){
-    this._productDataService.productsCart.push(product);
-    
-    this._productDataService.countProd.push(countValue);
- 
-    // this._productDataService.addToCart[i] = !this._productDataService.addToCart[i];
-    this._productDataService.addedToCart.next(this._productDataService.addToCart);
-    
+    return this._productDataService.onClickAddCart(countValue,product);
+  }
+  onClickAddCart(countValue:number,product :any){
+    return this._productDataService.onClickAddCart(countValue,product);
   }
 
 }

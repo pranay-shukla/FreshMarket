@@ -21,12 +21,12 @@ export class LoginComponent implements OnInit {
   getData(data:NgForm){
     this.http.post<any>("http://localhost:3000/users/login",data)
     .subscribe(res=>{
-      this._productDataService.username.next(res.username)
+      this._productDataService.username=res.username;
       
       localStorage.setItem('jwt',res.token)
       
       alert(res.message)
-      this._productDataService.login.next(false)
+      this._productDataService.login = false;
       this.router.navigate(['home'])
     },err=>{      
       alert(err.error.message)

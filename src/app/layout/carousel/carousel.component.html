@@ -5,7 +5,7 @@
         <button class="next" type="submit" appNextFeatured><img src="../../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
     </div>
     <div class="featured-products-carousel">
-        <div *ngFor="let product of products|searchBar:typeSearch |productFilter:filterSideBarValue; index as i" class="product" >
+        <div *ngFor="let product of products()|searchBar:typeSearch |productFilter:filterSideBarValue; index as i" class="product" >
             <a routerLink="product" (click)="Onclickproduct(product,i)">
                 <div class="image">
                     <div>New</div>
@@ -18,8 +18,8 @@
                     </a>
                     <div class="price">&#x20B9; {{product.price}}</div>
                     <div class="rating">{{product.rating}} &#9733;</div>
-                    <div  *ngIf="!addedToCart[i]" class="add-to-cart" (click)="onClickAddCart(1,product,i)"><button >Add To Cart</button></div>
-                    <div  *ngIf="addedToCart[i]" class="added-to-cart" (click)="onClickRemoveCart(product,i)"><button >&check; Added To Cart</button></div>
+                    <div  class="add-to-cart" (click)="onClickAddCart(1,product)"><button >Add To Cart</button></div>
+                    
                 </div>
             
             
@@ -32,7 +32,7 @@
         <button class="next" type="submit" appNextNew><img src="../../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
     </div>
     <div class="new-products-carousel">
-        <div *ngFor="let product of products|searchBar:typeSearch |productFilter:filterSideBarValue;index as i" class="product" >
+        <div *ngFor="let product of products()|searchBar:typeSearch |productFilter:filterSideBarValue;index as i" class="product" >
             <a routerLink="product" (click)="Onclickproduct(product,i)">
                 <div class="image" routerLink="product" (click)="Onclickproduct(product,i)">
                     <img src="../../../assets/images/{{product.filename}}" alt="product image" >
@@ -44,8 +44,8 @@
                     </a>
                     <div class="price">&#x20B9; {{product.price}}</div>
                     <div class="rating">{{product.rating}} &#9733;</div>
-                    <div  *ngIf="!addedToCart[i]" class="add-to-cart" (click)="onClickAddCart(1,product,i)"><button >Add To Cart</button></div>
-                    <div  *ngIf="addedToCart[i]" class="added-to-cart" (click)="onClickRemoveCart(product,i)"><button >&check; Added To Cart</button></div>
+                    <div  class="add-to-cart" (click)="onClickAddCart(1,product)"><button >Add To Cart</button></div>
+                    
 
                 </div>
             

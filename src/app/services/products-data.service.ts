@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { AuthService } from '../auth.service';
+
+
 // import productData from '../../assets/products.json'
 
 interface product{
@@ -21,20 +25,28 @@ interface product{
 export class ProductsDataService {
   
   static products: any;
+
+  //for showing carousel products
   products:product[]=[];
-  productsData:any = {}
-  addToCart:any ={};
+  
+
+//for updating cart
+  productsCart:any=[];
+  
+
+
   searchVal = new BehaviorSubject(""); // for home-page filter
   typeSearch = new BehaviorSubject(""); // for product-type pages filter
-  addedToCart = new BehaviorSubject(this.addToCart);// for showing added to cart or not wherever that item is shown
   
-  productsCart:product[] =[];
-  countProd:number[] = [] ;
+  
+  // for storing count of each item in cart
+  countProd :number[]=[];
   productInfo = new BehaviorSubject({});
+  
 
-
-  username = new BehaviorSubject(""); // to display the nae of user in the nav bar
-  login = new BehaviorSubject(true);
+  username :any // to display the nae of user in the nav bar
+  //for finding whether user logged in or not
+  login:any;
 
   filterSideBarValue = new BehaviorSubject({
     "fruit" : true,
@@ -56,27 +68,103 @@ export class ProductsDataService {
     
   }); // for side-bar filter
   
-  constructor(private http : HttpClient) { 
+  constructor(private http : HttpClient,private _auth : AuthService,private router:Router) { 
 
     this.http.get('http://localhost:3000/products')
-    .subscribe(res=>{
+    .subscribe((res : any )=>{
       
-      this.productsData = res;
-      this.products = this.productsData.productsData
+      
+      this.products = res.productsData
       
     },err=>{
       alert(err.error.message)
     })
     
-
+    this.loggedIn();
     }
     
   filteredValue(sidebarValue : any){
     this.filterSideBarValue.next(sidebarValue);
   }
 
+
+
+  addProductToCart(){
+    const userToken =localStorage.getItem('jwt')
+    
+    this.http.post('http://localhost:3000/cart/getAllCartProducts',{userToken : userToken})
+    .subscribe((res:any)=>{
+      
+      
+      this.countProd = res.countProduct;
+      
+      this.productsCart = res.productCart;
+      
+     
+    },err=>{
+      alert(err.error)
+    })
+  }
+
+  onClickAddCart(countValue:number,product :any){
+    if(!this._auth.loggedIn())
+      {
+        this.router.navigate(['login']);
+        return; 
+      }
+
+    const userToken =localStorage.getItem('jwt')
+    
+    this.http.post<any>('http://localhost:3000/cart/add',{productId : product._id,userToken : userToken,countVal : countValue})
+    .subscribe(res=>{
+      alert(res.message)
+      this.addProductToCart();
+    },err=>{
+      console.log(err)
+    })
+    
+  }
+
+  updateCount(countValue : number, product : any){
+    const userToken =localStorage.getItem('jwt')
+    this.http.post<any>('http://localhost:3000/cart/updateCount',{productId : product._id,userToken : userToken,countVal : countValue})
+    .subscribe(res=>{
+      this.addProductToCart();
+      // alert(res.message)
+    },err=>{
+      console.log(err)
+    })
+  }
+
+
   productDetail(product:any,index:number){
     this.productInfo.next(product);
   }
   
+
+// to stay logged in untill pressed logout
+loggedIn(){
+  const userToken =localStorage.getItem('jwt');
+  
+  if(userToken)
+  {
+    
+    this.http.post<any>('http://localhost:3000/users/loggedIn',{userToken : userToken})
+  .subscribe((res:any)=>{
+    
+    
+    this.login = res.loggedIn;
+    this.username = res.username;
+    this.addProductToCart();
+    
+  },err=>{
+    console.log(err)
+  })
+  }
+  else{
+    this.login = true;
+    this.username = "Guest"
+  }
+}
+
 }

@@ -45,19 +45,22 @@
         <button class="prev" type="submit" appPrevProduct><img src="../../assets/left_arrow.jpg" alt="" width="14px" height="10px"></button>
         <button class="next" type="submit" appNextProduct><img src="../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
         <div class="product-carousel">
-            <div *ngFor="let product of frequentlyBoughtProducts;index as i" class="product" >
+            <div *ngFor="let product of frequentlyBoughtProducts ;index as i" class="product" >
                 <a routerLink="product" (click)="Onclickproduct(product,i)">
                     <div class="image">
                         <!-- <div>New</div> -->
                         <img src="../../assets/images/{{product.filename}}" alt="product image" >
                     </div>
+                </a>
                     <div class="details">
-                        <div class="name">{{product.title | shorten:18}}</div>
+                        <a routerLink="product" (click)="Onclickproduct(product,i)">
+                            <div class="name">{{product.title | shorten:18}}</div>
+                        </a>
                         <div class="price">&#x20B9; {{product.price}}</div>
                         <div class="rating">{{product.rating}} &#9733;</div>
-                        <div class="add-to-cart"><button>Add To Cart</button></div>
+                        <div  class="add-to-cart" (click)="onClickAddCart(1,product)"><button >Add To Cart</button></div>
                     </div>
-                </a>
+                
             </div>
         </div>
     </div>
@@ -67,19 +70,22 @@
         <button class="next" type="submit" appNextProduct><img src="../../assets/right_arrow.jpg" alt="" width="14px" height="10px"></button>
 
         <div class="product-carousel">
-            <div *ngFor="let product of similarProducts| searchBar:product.type;index as i" class="product" >
+            <div *ngFor="let product of similarProducts ;index as i" class="product" >
                 <a routerLink="product" (click)="Onclickproduct(product,i)">
                     <div class="image">
                         <!-- <div>New</div> -->
                         <img src="../../assets/images/{{product.filename}}" alt="product image" >
                     </div>
+                </a>
                     <div class="details">
-                        <div class="name">{{product.title | shorten:18}}</div>
+                        <a routerLink="product" (click)="Onclickproduct(product,i)">
+                            <div class="name">{{product.title | shorten:18}}</div>
+                        </a>
                         <div class="price">&#x20B9; {{product.price}}</div>
                         <div class="rating">{{product.rating}} &#9733;</div>
-                        <div class="add-to-cart"><button>Add To Cart</button></div>
+                        <div  class="add-to-cart" (click)="onClickAddCart(1,product)"><button >Add To Cart</button></div>
                     </div>
-                </a>
+                
             </div>
         </div>
     </div>

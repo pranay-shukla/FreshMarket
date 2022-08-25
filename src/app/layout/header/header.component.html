@@ -60,11 +60,11 @@
         <div class="right-nav">
             <ul>
                 <li class="welcome">Welcome &nbsp; </li>
-                <div *ngIf="username" class="username">"{{username}}" &nbsp; </div>
+                <div *ngIf="username" class="username">"{{username()}}" &nbsp; </div>
                 <div *ngIf="!username" class="username">"Guest" &nbsp; </div>
-                <li *ngIf="login" class="login" routerLinkActive="active2" ><a routerLink="login" ><img src="../../../assets/lock.png" alt="" width="20px" height="50%"> Login</a></li>
-                <li *ngIf="!login" class="account" routerLinkActive="active2" ><a routerLink="account" ><img src="../../../assets/account.png" alt="" width="20px" height="16px" style="margin-top: 2%"> Your Account</a></li>
-                <li *ngIf="!login" class="logout" (click)=onClickLogout()><a><img src="../../../assets/logout.png" alt="" width="20px" height="50%">&nbsp;Logout</a></li>
+                <li *ngIf="login()" class="login" routerLinkActive="active2" ><a routerLink="login" ><img src="../../../assets/lock.png" alt="" width="20px" height="50%"> Login</a></li>
+                <li *ngIf="!login()" class="account" routerLinkActive="active2" ><a routerLink="account" ><img src="../../../assets/account.png" alt="" width="20px" height="16px" style="margin-top: 2%"> Your Account</a></li>
+                <li *ngIf="!login()" class="logout" (click)=onClickLogout()><a><img src="../../../assets/logout.png" alt="" width="20px" height="50%">&nbsp;Logout</a></li>
             </ul>
             
         </div>

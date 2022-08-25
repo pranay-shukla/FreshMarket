@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductsDataService } from 'src/app/services/products-data.service';
 import {CookieService} from 'ngx-cookie-service'
-
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -16,22 +16,17 @@ export class HeaderComponent implements OnInit,OnDestroy {
   searchBarObj:any;
   
   
-  username : string ='';
-  login = true;
-
+  
+  
+  cartItems = 0;
 
 
   constructor(private _productDataService:ProductsDataService, private htto : HttpClient, private router : Router,
     private cookie : CookieService) { }
   
   ngOnInit(): void {
-    this._productDataService.username.subscribe(res=>{
-      this.username = res;
-    })
-    this._productDataService.login.subscribe(res=>{
-      this.login = res;
-    })
-    // this._productDataService.searchVal.next(this.searchBarObj);
+    // this._productDataService.loggedIn();
+  
   }
   
   search(data: NgForm){
@@ -42,11 +37,13 @@ export class HeaderComponent implements OnInit,OnDestroy {
     this._productDataService.searchVal.next(this.searchBarObj.searchItem);
   }
   cart(){
-    let value = this._productDataService.countProd.length;
-    if(value === 0)
+   
+    
+    if(this._productDataService.countProd.length === 0)
     return "Cart Empty"
     else
-    return value + " "+"items"
+    return this._productDataService.countProd.length + " "+"items"
+    
   }
 
 
@@ -59,8 +56,10 @@ export class HeaderComponent implements OnInit,OnDestroy {
       alert('Logout Successfull')
       localStorage.removeItem('jwt');
       
-      this._productDataService.login.next(true)
-      
+      this._productDataService.login=true;
+      this._productDataService.productsCart = []
+      this._productDataService.countProd = []
+      this._productDataService.username="Guest";
       this.router.navigate(['login']);
     },err=>{
       console.log(err)
@@ -68,7 +67,12 @@ export class HeaderComponent implements OnInit,OnDestroy {
     })
     }
   }
-
+username(){
+  return this._productDataService.username;
+}
+login(){
+  return this._productDataService.login;
+}
 
   ngOnDestroy(): void {
     this._productDataService.searchVal.next("");

@@ -35,6 +35,9 @@ const userSchema = new  mongoose.Schema({
     cartProducts : [{
         cartProduct:{
             type : String
+        },
+        countVal:{
+            type : Number
         }
     }]
 })
@@ -49,7 +52,9 @@ userSchema.path('email').validate(val=>{
 // generating tokens
 userSchema.methods.generateAuthToken = function(){
     try{
-        const token = jwt.sign({_id:this._id},process.env.SECRET_KEY)
+        const token = jwt.sign({_id:this._id},process.env.SECRET_KEY,{
+            expiresIn:'24h'
+        })
         this.tokens = this.tokens.concat({token : token})
         // this.save();
         return token;
@@ -65,6 +70,9 @@ userSchema.methods.generateAuthToken = function(){
 userSchema.methods.verifyPassword = function(password){
     return bcrypt.compareSync(password, this.password)
 }
+
+
+
 
 
 // userSchema.plugin(uniqueValidator, {message : 'username already in use'})
